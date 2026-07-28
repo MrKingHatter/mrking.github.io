@@ -230,7 +230,7 @@ const MAP6 = parseMap([
   'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 ]);
 
-// ===== MAP 7: Tuscany, Italy =====
+// ===== MAP 7: Piedmont, Italy =====
 // Camping village with boutiques, sunflower fields, winding paths, Stefy near the main square
 const MAP7 = parseMap([
   'tttttttttttttttttttttttttttttttttttttttttttttttttt',
@@ -646,8 +646,8 @@ export const LEVELS = [null,
     { speaker: 'Mikkel', text: "It fell somewhere in the eastern rocks along the shore. I'll look there." },
   ],
 },
-{ // 7 - Tuscany, Italy (final level - no quest, just find flower + Stefy)
-  name: 'Tuscany, Italy',
+{ // 7 - Piedmont, Italy (final level - no quest, just find flower + Stefy)
+  name: 'Piedmont, Italy',
   playerStart: { x: 8, y: 12 },
   npcs: [
     { id: 'it_nonna', col: 7, row: 7, style: 13, hasQuest: false,
