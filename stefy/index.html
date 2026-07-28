@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Flowers for Stefy – a cute pixel art adventure game" />
+  <title>Flowers for Stefy</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="game-canvas" width="640" height="480"></canvas>
+    <div id="dialog-box" class="hidden">
+      <div id="dialog-speaker"></div>
+      <div id="dialog-text"></div>
+      <div id="dialog-prompt">▼ Press Space</div>
+    </div>
+    <div id="ui-overlay">
+      <div id="flower-count">🌸 <span id="flowers-collected">0</span>/7</div>
+      <div id="location-name"></div>
+    </div>
+    <div id="title-screen">
+      <div id="title-art"></div>
+      <h1>Flowers for Stefy</h1>
+      <p class="subtitle">A journey of love across the world</p>
+      <p class="start-prompt">Press Space to begin</p>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1a1a2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+#game-container {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  border: 4px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+#game-canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#dialog-box {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(10, 10, 30, 0.92);
+  border: 3px solid #f0e6d3;
+  border-radius: 8px;
+  padding: 14px 18px;
+  color: #f0e6d3;
+  font-size: 14px;
+  line-height: 1.5;
+  z-index: 10;
+}
+
+#dialog-box.hidden { display: none; }
+
+#dialog-speaker {
+  font-weight: bold;
+  color: #ffcc66;
+  margin-bottom: 4px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#dialog-text {
+  min-height: 40px;
+}
+
+#dialog-prompt {
+  text-align: right;
+  color: #aaa;
+  font-size: 11px;
+  margin-top: 6px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+#ui-overlay {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 5;
+}
+
+#flower-count {
+  background: rgba(10, 10, 30, 0.8);
+  border: 2px solid #f0e6d3;
+  border-radius: 6px;
+  padding: 4px 10px;
+  color: #f0e6d3;
+  font-size: 13px;
+}
+
+#location-name {
+  background: rgba(10, 10, 30, 0.8);
+  border: 2px solid #f0e6d3;
+  border-radius: 6px;
+  padding: 4px 10px;
+  color: #aed9e0;
+  font-size: 13px;
+  font-style: italic;
+}
+
+#title-screen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  color: #f0e6d3;
+}
+
+#title-screen.hidden { display: none; }
+
+#title-screen h1 {
+  font-size: 32px;
+  color: #ffcc66;
+  text-shadow: 2px 2px 0 #333;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #aed9e0;
+  margin-bottom: 40px;
+}
+
+.start-prompt {
+  font-size: 13px;
+  animation: blink 1.2s infinite;
+}
+
+#title-art {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  background: radial-gradient(circle, #ff9ecb 30%, transparent 31%),
+              radial-gradient(circle, #ff9ecb 30%, transparent 31%),
+              radial-gradient(circle, #ffcc66 20%, transparent 21%);
+  background-size: 40px 40px, 40px 40px, 20px 20px;
+  background-position: 15px 25px, 35px 25px, 30px 40px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
