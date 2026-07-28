@@ -98,7 +98,7 @@ const ENV_DIALOG = {
       "An old villa wall, covered in ivy. Very romantic.",
     ],
     [T.HOUSE]: [
-      "A Tuscan farmhouse. I can smell fresh bread baking!",
+      "A Piedmont farmhouse. I can smell fresh bread baking!",
     ],
   },
 };

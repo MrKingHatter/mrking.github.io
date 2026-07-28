@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Flowers for Stefy** is a pixel art adventure game where the protagonist Mikkel travels through 7 real-world locations collecting rare flowers for Stefy (who is learning English). Each level features:
+**Flowers for Stefy** is a pixel art adventure game where the protagonist Mikkel travels through 7 real-world locations collecting rare flowers for Stefy. Each level features:
 
 - A **50x30 tile map** (1600x960px world) with camera scrolling
 - An **NPC with an English riddle** presented as multiple-choice (except the final level)
@@ -27,12 +27,12 @@ After the NPC delivers their dialog, a **multiple-choice riddle** appears:
 ### Self-Talk & Hint System
 
 Mikkel provides inner monologue at key moments:
-- **After intro:** hints where to go first ("I should talk to the gardener")
-- **After NPC riddle (auto):** tells player *what* to find ("I need to find rope to fix the bridge")
-- **On-demand (Press H):** tells player *where* to look ("He left it to the south, along the river path")
+- **After intro:** hints where to go first
+- **After NPC riddle (auto):** tells player *what* to find
+- **On-demand (Press H):** tells player *where* to look
 - **After picking up quest item:** reminds to return it
 
-The "where" hint is never shown automatically -- a pulsing **"Press H for hint"** indicator appears in the HUD after the auto-hint. This avoids hand-holding players who want to explore, while keeping help accessible.
+The "where" hint is never shown automatically -- a pulsing **"Press H for hint"** indicator appears in the HUD after the auto-hint.
 
 ### Flower Sprites
 
@@ -45,16 +45,16 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 | 3 | Silver Lavender | Tall spike of tiny buds | Purple + white |
 | 4 | Rainbow Orchid | Exotic asymmetric petals | Cyan + purple center |
 | 5 | Desert Rose | Layered circular petals | Red + yellow center |
-| 6 | Arctic Poppy | Large simple round bloom | Yellow + black center |
+| 6 | Danish Bluebell | Bell-shaped drooping bloom | Blue + dark blue center |
 | 7 | Italian Sunflower | Large center + ray petals | Orange + brown center |
 
 ---
 
-## Chapter 1: Tokyo Zen Garden, Japan
+## Chapter 1: Tokyo Garden, Japan
 
 **Flower:** Cherry Blossom (pink, 5-petal shape)
 **Quest Item:** Old Garden Clock
-**NPC:** Old Gardener
+**NPC:** Old Gardener (at 8, 7)
 
 ### Riddle
 
@@ -68,21 +68,19 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 *Wrong answer hint:* "Think about what tells you the time..."
 
-### What the Player Does
+### Flow
 
-1. Spawns at (5, 13). Self-talk: "I should talk to the gardener over there."
-2. Talks to the Old Gardener at (8, 7) who poses the riddle
-3. Answers correctly --> Gardener says to find the old clock in the eastern garden
-4. Self-talk (auto): "A clock... I need to find one and bring it back."
-5. *Press H*: "I should search the eastern garden paths."
-6. Finds the **Old Garden Clock** at (44, 28) in the far east
-7. Returns it --> Cherry Blossom revealed at (8, 17) inside the walled garden
+1. Spawns at (5, 13). Intro: "I should talk to the gardener over there."
+2. Talks to Old Gardener at (8, 7) who poses the riddle
+3. Answers correctly --> Gardener asks for the old clock
+4. Finds **Old Garden Clock** at (44, 28) in the south-eastern corner
+5. Returns it --> Cherry Blossom revealed at (8, 17)
 
-### Design Reasoning
+### Design Notes
 
-- **Setting:** Traditional Japanese zen garden with pagoda walls creating a physical barrier around the flower.
-- **Riddle:** "Clock" is simple and visual. The double meaning of "hands" and "face" introduces English wordplay gently. Good opening puzzle.
-- **Difficulty:** Easy. Clear paths, introduces the core loop (talk -> riddle -> find -> return -> collect).
+- **Setting:** Traditional Japanese zen garden with pagoda walls.
+- **Riddle:** "Clock" - polysemy of "hands" and "face". Gentle opener.
+- **Difficulty:** Easy.
 
 ---
 
@@ -90,7 +88,7 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 **Flower:** Golden Tulip (cup-shaped)
 **Quest Item:** Toy Windmill
-**NPC:** Farmer Hans
+**NPC:** Farmer Hans (at 6, 3)
 
 ### Riddle
 
@@ -104,20 +102,18 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 *Wrong answer hint:* "Look around - what is Holland famous for?"
 
-### What the Player Does
+### Flow
 
-1. Spawns at (5, 22) in the southern canal area. Self-talk: "I need to cross the bridges north."
-2. Navigates north across bridges over canals to find Farmer Hans at (6, 3)
-3. Answers the riddle --> Hans asks for his daughter's lost toy windmill
-4. Self-talk (auto): "I need to find a toy windmill and bring it back."
-5. *Press H*: "He said it's near the southern canals."
-6. Searches for the **Toy Windmill** at (35, 21) along the middle canal paths
-7. Returns it --> Golden Tulip revealed at (45, 1) in the far north-east
+1. Spawns at (5, 22). Navigates north across bridges over canals.
+2. Finds Farmer Hans at (6, 3)
+3. Answers riddle --> Hans asks for his daughter's lost toy windmill
+4. Finds **Toy Windmill** at (35, 21) far to the east near canals
+5. Returns it --> Golden Tulip revealed at (45, 1) north-east
 
-### Design Reasoning
+### Design Notes
 
-- **Setting:** Flat Dutch polders with horizontal canal bands and bridges forcing specific crossing points.
-- **Riddle:** Environmental -- the answer is literally visible all around the Netherlands. Teaches English vocabulary for mechanical parts (wings, spins).
+- **Setting:** Flat Dutch polders with horizontal canal bands and bridges.
+- **Riddle:** Environmental -- windmills are visible everywhere in Netherlands.
 - **Difficulty:** Medium. Bridge-finding adds navigation complexity.
 
 ---
@@ -126,7 +122,7 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 **Flower:** Silver Lavender (tall spike shape)
 **Quest Item:** Smooth Brook Stone
-**NPC:** Painter Marie
+**NPC:** Painter Marie (at 5, 3)
 
 ### Riddle
 
@@ -140,21 +136,19 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 *Wrong answer hint:* "Think - what do you use AFTER a bath?"
 
-### What the Player Does
+### Flow
 
 1. Spawns at (8, 10). Self-talk: "I can see someone painting to the north."
-2. Finds Painter Marie at (5, 3) who needs help with an English word
-3. Answers the riddle --> Marie asks for a smooth stone from the brook to the east
-4. Self-talk (auto): "She needs a smooth stone from the brook. I should find one."
-5. *Press H*: "The brook is to the east. I'll follow the path and look for water."
-6. Travels east to find the **Smooth Brook Stone** at (42, 15) near the water
-7. Returns it --> Silver Lavender revealed at (46, 9) past the stone wall
+2. Finds Painter Marie at (5, 3)
+3. Answers riddle --> Marie asks for a smooth stone from the brook
+4. Finds **Smooth Brook Stone** at (42, 15) far to the east
+5. Returns it --> Silver Lavender revealed at (46, 9)
 
-### Design Reasoning
+### Design Notes
 
-- **Setting:** French lavender countryside. Stone walls divide the map into zones.
-- **Riddle:** Classic and well-known. Plays on the dual meaning of "dries" -- the towel dries you but becomes wet itself. Easy to understand with the hint.
-- **Difficulty:** Medium. The stone wall forces path-finding.
+- **Setting:** French lavender countryside. Stone walls divide zones.
+- **Riddle:** Dual meaning of "dries" -- towel dries you but becomes wet.
+- **Difficulty:** Medium.
 
 ---
 
@@ -162,7 +156,7 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 **Flower:** Rainbow Orchid (exotic asymmetric shape)
 **Quest Item:** Sturdy Vine Rope
-**NPC:** Guide Carlos
+**NPC:** Guide Carlos (at 4, 8)
 
 ### Riddle
 
@@ -176,29 +170,27 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 *Wrong answer hint:* "Think smaller - something in your pocket!"
 
-### What the Player Does
+### Flow
 
 1. Spawns at (3, 3). Self-talk: "I can see someone on the path below."
 2. Talks to Guide Carlos at (4, 8) who needs rope to fix a vine bridge
-3. Answers the riddle --> Carlos says the rope is to the south along the river
-4. Self-talk (auto): "I need to find rope to fix the bridge."
-5. *Press H*: "He left it to the south, along the river path."
-6. Follows the path south to find **Sturdy Vine Rope** at (4, 20)
-7. Returns it --> Rainbow Orchid revealed at (47, 28) far south-east
+3. Answers riddle --> Carlos says rope is to the south
+4. Finds **Sturdy Vine Rope** at (4, 20) straight south on the path
+5. Returns it --> Rainbow Orchid revealed at (47, 28) far south-east
 
-### Design Reasoning
+### Design Notes
 
-- **Setting:** Dense Amazon rainforest with a winding river and narrow corridors.
-- **Riddle:** "Coin" -- teaches the English terms "heads" and "tails" for coin sides. The wrong answers are good distractors (snakes and rivers both have "heads" in some sense).
-- **Difficulty:** Hard. Dense canopy, narrow paths, maximum traversal distance.
+- **Setting:** Dense Amazon rainforest with winding river and narrow corridors.
+- **Riddle:** Teaches "heads" and "tails" for coin sides.
+- **Difficulty:** Hard. Dense canopy, narrow paths.
 
 ---
 
 ## Chapter 5: Sahara Edge, Morocco
 
 **Flower:** Desert Rose (layered petal shape)
-**Quest Item:** Old Compass
-**NPC:** Merchant Youssef
+**Quest Item:** Brass Spyglass
+**NPC:** Merchant Youssef (at 10, 6)
 
 ### Riddle
 
@@ -212,29 +204,27 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 *Wrong answer hint:* "When you dig in the sand, what happens?"
 
-### What the Player Does
+### Flow
 
 1. Spawns at (4, 8). Self-talk: "I see someone by the path ahead."
-2. Finds Merchant Youssef at (10, 6) who wants a trade
-3. Answers the riddle --> Youssef asks for an old compass from the oasis
-4. Self-talk (auto): "He wants an old compass in exchange. I need to find it."
-5. *Press H*: "The oasis is to the south-east. It has water and bushes."
-6. Travels south-east to find the **Old Compass** at (28, 25) near the oasis
-7. Returns it --> Desert Rose revealed at (48, 1) at the far northern path
+2. Finds Merchant Youssef at (10, 6)
+3. Answers riddle --> Youssef asks for a brass spyglass from the oasis
+4. Finds **Brass Spyglass** at (28, 25) near the oasis
+5. Returns it --> Desert Rose revealed at (48, 1) far north
 
-### Design Reasoning
+### Design Notes
 
-- **Setting:** Moroccan Sahara -- sand dunes, rocky outcrops, and a palm oasis.
-- **Riddle:** "A hole" -- simple, physical, and the hint makes it obvious (digging in sand). The wrong answers both seem plausible at first.
+- **Setting:** Moroccan Sahara -- sand dunes, rocky outcrops, palm oasis.
+- **Riddle:** "A hole" -- simple, physical, hint makes it obvious.
 - **Difficulty:** Medium-Hard. Open desert with less wall-guidance.
 
 ---
 
-## Chapter 6: Volcanic Fields, Iceland
+## Chapter 6: White Cliffs, Denmark
 
-**Flower:** Arctic Poppy (large round shape)
+**Flower:** Danish Bluebell (bell-shaped, blue)
 **Quest Item:** Lost Compass
-**NPC:** Hiker Sigrid
+**NPC:** Fisherman Lars (at 6, 7)
 
 ### Riddle
 
@@ -248,42 +238,42 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 *Wrong answer hint:* "What makes people laugh?"
 
-### What the Player Does
+### Flow
 
-1. Spawns at (3, 4). Self-talk: "There's a hiker resting near the rocks."
-2. Finds Hiker Sigrid at (6, 7) who lost her compass
-3. Answers the riddle --> Sigrid tells a flower pun as reward, then asks for the compass
-4. Self-talk (auto): "She lost her compass. I need to find it for her."
-5. *Press H*: "It fell somewhere in the eastern rocks."
-6. Explores east to find the **Lost Compass** at (38, 10)
-7. Returns it --> Sigrid tells another joke, Arctic Poppy revealed at (47, 28)
+1. Spawns at (3, 4). Self-talk: "There's a fisherman resting near the rocks."
+2. Finds Fisherman Lars at (6, 7) who lost his compass in a storm
+3. Answers riddle --> Lars tells a flower pun, asks for the compass
+4. Finds **Lost Compass** at (38, 10) in the eastern rocks
+5. Returns it --> Danish Bluebell revealed at (47, 28) south-eastern cliffs
 
-### Design Reasoning
+### Design Notes
 
-- **Setting:** Iceland's volcanic landscape -- black rock, moss patches, hot springs.
-- **Riddle:** "A joke" -- teaches English collocations (crack a joke, make a joke, tell a joke, play a joke). Sigrid's personality rewards the answer with actual jokes.
-- **Difficulty:** Medium-Hard. Rocky terrain blends together visually.
+- **Setting:** Danish white cliffs, grey sea (coastal lake), chalk rocks.
+- **Riddle:** "A joke" -- teaches collocations (crack/make/tell/play a joke). Lars rewards with actual jokes.
+- **Difficulty:** Medium-Hard. Rocky terrain blends visually.
 
 ---
 
 ## Chapter 7: Piedmont, Italy (Finale)
 
-**Flower:** Italian Sunflower (sunflower shape with large center)
+**Flower:** Italian Sunflower (large sunflower shape)
 **Quest Item:** None
-**NPC:** None (Stefy is here!)
+**NPC:** Nonna Rosa (at 7, 7) -- optional flavor dialog
 
 ### What the Player Does
 
 1. Spawns at (8, 12). Self-talk: "I can see a bright sunflower in the fields to the north! And there... Stefy near the villa!"
-2. Picks up the **Italian Sunflower** at (20, 5) -- visible, NOT hidden
-3. Walks to Stefy at (12, 10)
-4. Ending dialog: Mikkel gives Stefy all 7 flowers and they reunite
+2. Optionally talks to Nonna Rosa who encourages Mikkel
+3. Picks up the **Italian Sunflower** at (20, 5) -- visible, NOT hidden
+4. Walks to Stefy at (12, 10)
+5. Ending dialog: Mikkel gives Stefy all 7 flowers and they go for gelato
 
-### Design Reasoning
+### Design Notes
 
+- **Setting:** Piedmont camping village with boutiques, sunflower fields, winding paths.
 - **No riddle:** This is the emotional payoff. No barriers after 6 levels of challenges.
 - **Flower is visible:** Signals "you've earned this -- take it freely."
-- **The ending dialog** recounts every flower and every country, turning the journey into a declaration of love.
+- **The ending dialog** recounts every flower and every country, turning the journey into a heartfelt moment.
 
 ---
 
@@ -317,25 +307,3 @@ All riddles are designed to be:
 | 5 | Open desert | Fetch + exploration | Wide open |
 | 6 | Rocky blending | Fetch + callback humor | Semi-open |
 | 7 | Free movement | None | Fully open |
-
-### World Journey Arc
-
-The locations trace a deliberate geographic/emotional arc:
-- **Japan** -> Wonder and discovery (far east, exotic)
-- **Netherlands** -> Charm and warmth (northern Europe)
-- **France** -> Art and beauty (Mediterranean)
-- **Brazil** -> Adventure and danger (tropical)
-- **Morocco** -> Mystery and trade (desert)
-- **Iceland** -> Resilience and humor (sub-arctic)
-- **Italy** -> Home and love (Stefy's homeland)
-
-The journey moves from exotic/distant toward familiar/home, mirroring Mikkel's emotional journey from longing to reunion.
-
-### The Bouquet
-
-The 7 distinct flower shapes combine into a visually varied bouquet:
-- Vertical variety: tall lavender spike, short round poppy, medium tulip cup
-- Color spread: pink, yellow, purple, cyan, red, yellow, orange
-- Shape contrast: symmetrical (rose, poppy) vs asymmetrical (orchid) vs radial (sunflower)
-
-This ensures the ending moment feels like a real, diverse collection -- not just 7 recolors of the same sprite.
