@@ -266,7 +266,7 @@ Each flower has a **unique pixel art shape** for visual variety and a satisfying
 
 ---
 
-## Chapter 7: Tuscany, Italy (Finale)
+## Chapter 7: Piedmont, Italy (Finale)
 
 **Flower:** Italian Sunflower (sunflower shape with large center)
 **Quest Item:** None

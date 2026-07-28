@@ -228,6 +228,25 @@ function boot() {
   scenes.register(new LevelScene());
   scenes.register(new EndingScene());
 
+  // Music toggle button + M key
+  const musicBtn = document.getElementById('music-toggle');
+  if (musicBtn) {
+    musicBtn.addEventListener('click', () => {
+      const on = audio.toggleMusic();
+      musicBtn.textContent = on ? '♪' : '♪✗';
+      musicBtn.classList.toggle('muted', !on);
+    });
+  }
+  window.addEventListener('keydown', e => {
+    if (e.code === 'KeyM' && !e.repeat) {
+      const on = audio.toggleMusic();
+      if (musicBtn) {
+        musicBtn.textContent = on ? '♪' : '♪✗';
+        musicBtn.classList.toggle('muted', !on);
+      }
+    }
+  });
+
   // Start
   scenes.switchTo('title');
   world.start();

@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div id="unsupported-screen" class="hidden">
+    <h1>🌸 Flowers for Stefy</h1>
+    <p>This game is best experienced on a <strong>desktop computer</strong> using <strong>Chrome</strong> or <strong>Edge</strong>.</p>
+    <p>Please open this link on a PC/Mac in one of those browsers to play!</p>
+  </div>
   <div id="game-container">
     <canvas id="game-canvas" width="640" height="480"></canvas>
     <div id="dialog-box" class="hidden">
@@ -21,6 +26,7 @@
       <div id="objective-display" class="hidden"></div>
       <div id="location-name"></div>
       <div id="hint-prompt" class="hidden">Press H for hint</div>
+      <button id="music-toggle" title="Toggle music (M)">♪</button>
     </div>
     <div id="title-screen">
       <canvas id="title-art" width="128" height="96"></canvas>
@@ -30,5 +36,16 @@
     </div>
   </div>
   <script type="module" src="game/main.js"></script>
+  <script>
+    (function() {
+      var ua = navigator.userAgent;
+      var isDesktop = !/Mobi|Android|iPhone|iPad|iPod|tablet/i.test(ua);
+      var isChromium = /Chrome\//.test(ua) || /Edg\//.test(ua);
+      if (!isDesktop || !isChromium) {
+        document.getElementById('unsupported-screen').classList.remove('hidden');
+        document.getElementById('game-container').style.display = 'none';
+      }
+    })();
+  </script>
 </body>
 </html>
