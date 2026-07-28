@@ -1,6 +1,6 @@
 /**
  * dialog.js - Dialog System
- * Manages dialog queues, typewriter effect, and DOM overlay.
+ * Manages dialog queues, typewriter effect, choices, and DOM overlay.
  */
 
 import { System, registerComponent } from './core.js';
@@ -25,11 +25,18 @@ export class DialogSystem extends System {
     this._active = false;
     this._onComplete = null;
 
+    // Choice state
+    this._choiceMode = false;
+    this._choices = null;
+    this._choiceIndex = 0;
+    this._onChoice = null;
+
     // DOM elements
     this._box = null;
     this._speakerEl = null;
     this._textEl = null;
     this._promptEl = null;
+    this._choicesEl = null;
   }
 
   init(world) {
@@ -38,11 +45,17 @@ export class DialogSystem extends System {
     this._speakerEl = document.getElementById('dialog-speaker');
     this._textEl = document.getElementById('dialog-text');
     this._promptEl = document.getElementById('dialog-prompt');
+    this._choicesEl = document.getElementById('dialog-choices');
   }
 
   /** Is dialog currently showing? */
   get active() {
     return this._active;
+  }
+
+  /** Is currently showing choices? */
+  get inChoice() {
+    return this._choiceMode;
   }
 
   /**
@@ -55,13 +68,40 @@ export class DialogSystem extends System {
     this._index = 0;
     this._onComplete = onComplete;
     this._active = true;
+    this._choiceMode = false;
     this._showLine();
+    this.world.events.emit('dialog:start');
+  }
+
+  /**
+   * Show a choice prompt
+   * @param {string} question - The question text
+   * @param {string} speaker - Speaker name
+   * @param {Array} options - [{text, correct}]
+   * @param {Function} onCorrect - callback when correct answer chosen
+   * @param {string} wrongText - text shown on wrong answer
+   */
+  showChoice(speaker, question, options, onCorrect, wrongText) {
+    this._active = true;
+    this._choiceMode = true;
+    this._choices = options;
+    this._choiceIndex = 0;
+    this._onChoice = onCorrect;
+    this._wrongText = wrongText || 'Hmm, that doesn\'t seem right. Try again!';
+    this._choiceSpeaker = speaker;
+
+    this._box.classList.remove('hidden');
+    this._speakerEl.textContent = speaker || '';
+    this._textEl.textContent = question;
+    this._promptEl.style.display = 'none';
+    this._renderChoices();
     this.world.events.emit('dialog:start');
   }
 
   /** Advance to next line or finish typewriter */
   advance() {
     if (!this._active) return;
+    if (this._choiceMode) return; // choices use selectChoice
 
     // If still typing, complete the line instantly
     if (this._currentLine && this._typedCount < this._currentLine.text.length) {
@@ -80,8 +120,36 @@ export class DialogSystem extends System {
     }
   }
 
+  /** Move choice selection up/down */
+  moveChoice(dir) {
+    if (!this._choiceMode) return;
+    this._choiceIndex = (this._choiceIndex + dir + this._choices.length) % this._choices.length;
+    this._renderChoices();
+  }
+
+  /** Confirm the current choice */
+  selectChoice() {
+    if (!this._choiceMode) return;
+    const chosen = this._choices[this._choiceIndex];
+    if (chosen.correct) {
+      this._choiceMode = false;
+      this._choicesEl.classList.add('hidden');
+      this._close();
+      if (this._onChoice) this._onChoice();
+    } else {
+      // Wrong answer - flash and show hint
+      this._textEl.textContent = this._wrongText;
+      const items = this._choicesEl.querySelectorAll('.dialog-choice');
+      if (items[this._choiceIndex]) {
+        items[this._choiceIndex].style.borderColor = '#c62828';
+        setTimeout(() => { items[this._choiceIndex].style.borderColor = '#555'; }, 400);
+      }
+    }
+  }
+
   update(dt) {
     if (!this._active || !this._currentLine) return;
+    if (this._choiceMode) return;
 
     // Typewriter effect
     if (this._typedCount < this._currentLine.text.length) {
@@ -107,16 +175,33 @@ export class DialogSystem extends System {
     this._typedCount = 0;
     this._timer = 0;
     this._box.classList.remove('hidden');
+    this._choicesEl.classList.add('hidden');
     this._speakerEl.textContent = this._currentLine.speaker || '';
     this._textEl.textContent = '';
     this._promptEl.style.display = 'none';
+  }
+
+  _renderChoices() {
+    this._choicesEl.classList.remove('hidden');
+    this._choicesEl.innerHTML = '';
+    this._choices.forEach((opt, i) => {
+      const div = document.createElement('div');
+      div.className = 'dialog-choice' + (i === this._choiceIndex ? ' selected' : '');
+      div.innerHTML = `<span class="dialog-choice-key">${i + 1})</span> ${opt.text}`;
+      this._choicesEl.appendChild(div);
+    });
+    this._promptEl.style.display = 'block';
+    this._promptEl.textContent = '↑↓ Move  Space: Select';
   }
 
   _close() {
     this._active = false;
     this._currentLine = null;
     this._queue = [];
+    this._choiceMode = false;
+    this._choicesEl.classList.add('hidden');
     this._box.classList.add('hidden');
+    this._promptEl.textContent = '▼ Press Space';
     this.world.events.emit('dialog:end');
     if (this._onComplete) {
       const cb = this._onComplete;

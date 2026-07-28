@@ -122,10 +122,6 @@ export class World {
   }
 
   query(...componentNames) {
-    const key = componentNames.sort().join(',');
-    if (!this._queryCacheDirty && this._queryCache.has(key)) {
-      return this._queryCache.get(key);
-    }
     const results = [];
     for (const entity of this.entities.values()) {
       if (!entity.alive) continue;
@@ -133,7 +129,6 @@ export class World {
         results.push(entity);
       }
     }
-    this._queryCache.set(key, results);
     return results;
   }
 

@@ -13,17 +13,19 @@
     <div id="dialog-box" class="hidden">
       <div id="dialog-speaker"></div>
       <div id="dialog-text"></div>
+      <div id="dialog-choices" class="hidden"></div>
       <div id="dialog-prompt">▼ Press Space</div>
     </div>
     <div id="ui-overlay">
       <div id="flower-count">🌸 <span id="flowers-collected">0</span>/7</div>
       <div id="location-name"></div>
+      <div id="hint-prompt" class="hidden">Press H for hint</div>
     </div>
     <div id="title-screen">
-      <div id="title-art"></div>
+      <canvas id="title-art" width="128" height="96"></canvas>
       <h1>Flowers for Stefy</h1>
-      <p class="subtitle">A journey of love across the world</p>
-      <p class="start-prompt">Press Space to begin</p>
+      <p class="subtitle">A journey of riddles across the world</p>
+      <p class="start-prompt">Press Space or click to begin</p>
     </div>
   </div>
   <script type="module" src="game/main.js"></script>

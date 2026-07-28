@@ -26,6 +26,15 @@ export class TileMapRenderer extends System {
     const renderer = this.world.globals.renderer;
     if (!renderer) return;
 
+    // Get camera offset
+    let camX = 0, camY = 0;
+    const cameras = this.world.query('Camera', 'Position');
+    if (cameras.length > 0) {
+      const camPos = cameras[0].get('Position');
+      camX = camPos.x;
+      camY = camPos.y;
+    }
+
     const tilemaps = this.query('TileMap');
     for (const entity of tilemaps) {
       const tm = entity.get('TileMap');
@@ -34,10 +43,16 @@ export class TileMapRenderer extends System {
       const sheet = renderer.getSheet(tm.sheetKey);
       if (!sheet) continue;
 
-      const scale = tm.tileSize / tm.tileRegions[0]?.w || 2;
+      const ts = tm.tileSize;
 
-      for (let row = 0; row < tm.rows; row++) {
-        for (let col = 0; col < tm.cols; col++) {
+      // Only render visible tiles (culling)
+      const startCol = Math.max(0, Math.floor(camX / ts));
+      const startRow = Math.max(0, Math.floor(camY / ts));
+      const endCol = Math.min(tm.cols, Math.ceil((camX + renderer.width) / ts) + 1);
+      const endRow = Math.min(tm.rows, Math.ceil((camY + renderer.height) / ts) + 1);
+
+      for (let row = startRow; row < endRow; row++) {
+        for (let col = startCol; col < endCol; col++) {
           const tileIdx = tm.data[row][col];
           const region = tm.tileRegions[tileIdx];
           if (!region) continue;
@@ -45,8 +60,9 @@ export class TileMapRenderer extends System {
           renderer.ctx.drawImage(
             sheet,
             region.x, region.y, region.w, region.h,
-            col * tm.tileSize, row * tm.tileSize,
-            tm.tileSize, tm.tileSize
+            col * ts - camX,
+            row * ts - camY,
+            ts, ts
           );
         }
       }

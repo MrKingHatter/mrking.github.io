@@ -68,6 +68,37 @@ body {
   animation: blink 1s infinite;
 }
 
+#dialog-choices {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#dialog-choices.hidden { display: none; }
+
+.dialog-choice {
+  padding: 6px 12px;
+  background: rgba(255, 204, 102, 0.1);
+  border: 2px solid #555;
+  border-radius: 4px;
+  color: #f0e6d3;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dialog-choice.selected {
+  border-color: #ffcc66;
+  background: rgba(255, 204, 102, 0.2);
+}
+
+.dialog-choice-key {
+  color: #ffcc66;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
@@ -103,6 +134,23 @@ body {
   font-style: italic;
 }
 
+#hint-prompt {
+  background: rgba(10, 10, 30, 0.7);
+  border: 1px solid #ffd700;
+  border-radius: 6px;
+  padding: 3px 8px;
+  color: #ffd700;
+  font-size: 12px;
+  animation: hint-pulse 2s ease-in-out infinite;
+}
+
+#hint-prompt.hidden { display: none; }
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
 #title-screen {
   position: absolute;
   inset: 0;
@@ -136,14 +184,9 @@ body {
 }
 
 #title-art {
-  width: 80px;
-  height: 80px;
+  width: 256px;
+  height: 192px;
   margin-bottom: 20px;
-  background: radial-gradient(circle, #ff9ecb 30%, transparent 31%),
-              radial-gradient(circle, #ff9ecb 30%, transparent 31%),
-              radial-gradient(circle, #ffcc66 20%, transparent 21%);
-  background-size: 40px 40px, 40px 40px, 20px 20px;
-  background-position: 15px 25px, 35px 25px, 30px 40px;
-  background-repeat: no-repeat;
   image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }

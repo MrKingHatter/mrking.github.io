@@ -18,6 +18,55 @@ export const Sprite = registerComponent('Sprite', {
   bobSpeed: 0,      // bobbing frequency
 });
 export const Camera = registerComponent('Camera', { x: 0, y: 0, zoom: 1 });
+export const CameraFollow = registerComponent('CameraFollow', {
+  targetTag: 'player', // tag of entity to follow
+  smoothing: 8,        // lerp speed (higher = snappier)
+  deadZone: 0,         // pixels of dead zone before camera moves
+});
+
+// --- Camera Follow System ---
+export class CameraFollowSystem extends System {
+  constructor() {
+    super(950); // runs after scene update (900), before rendering (1000)
+  }
+
+  update(dt) {
+    const cams = this.query('Camera', 'Position', 'CameraFollow');
+    if (cams.length === 0) return;
+    for (const cam of cams) {
+      const camPos = cam.get('Position');
+      const follow = cam.get('CameraFollow');
+      const renderer = this.world.globals.renderer;
+      if (!renderer) continue;
+
+      // Find target entity
+      const targets = this.world.queryTag(follow.targetTag);
+      if (targets.length === 0) continue;
+      const targetPos = targets[0].get('Position');
+      if (!targetPos) continue;
+
+      // Desired camera position = target centered on screen
+      const desiredX = targetPos.x - renderer.width / 2 + 16;
+      const desiredY = targetPos.y - renderer.height / 2 + 16;
+
+      // Clamp to map bounds
+      const tilemaps = this.world.query('TileMap');
+      let maxX = Infinity, maxY = Infinity;
+      if (tilemaps.length > 0) {
+        const tm = tilemaps[0].get('TileMap');
+        maxX = tm.cols * tm.tileSize - renderer.width;
+        maxY = tm.rows * tm.tileSize - renderer.height;
+      }
+
+      const clampedX = Math.max(0, Math.min(desiredX, maxX));
+      const clampedY = Math.max(0, Math.min(desiredY, maxY));
+
+      // Direct assignment for immediate follow
+      camPos.x = clampedX;
+      camPos.y = clampedY;
+    }
+  }
+}
 
 // --- Renderer System ---
 export class RendererSystem extends System {
@@ -50,12 +99,15 @@ export class RendererSystem extends System {
 
   update(dt) {
     this._time += dt;
+
+    // Clear canvas at start of frame (before tilemap and other systems render)
+    const ctx = this.ctx;
+    ctx.fillStyle = this.bgColor;
+    ctx.fillRect(0, 0, this.width, this.height);
   }
 
   render(dt) {
     const ctx = this.ctx;
-    ctx.fillStyle = this.bgColor;
-    ctx.fillRect(0, 0, this.width, this.height);
 
     // Get camera offset
     let camX = 0, camY = 0;
