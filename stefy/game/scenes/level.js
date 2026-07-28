@@ -80,8 +80,8 @@ const ENV_DIALOG = {
   },
   6: {
     [T.WATER]: [
-      'The North Sea! Cold and grey, but beautiful in its own way.',
-      "I can see fishing boats far out. Denmark's coast is wild.",
+      'A little coastal lake. The water is dark and still.',
+      "I can see fish jumping. Lars probably catches his dinner here.",
     ],
     [T.ROCK]: [
       'White chalk cliffs. They crumble into the sea over time.',
@@ -108,26 +108,33 @@ const ENV_STAND_DIALOG = {
   1: {
     [T.FLOWERS]: ['A patch of wildflowers. Pretty, but not the cherry blossom I need.'],
     [T.BRIDGE]: ['This wooden bridge creaks under my feet.'],
+    [T.PATH]: ["Stefy's smile keeps popping into my head. Focus, Mikkel!"],
   },
   2: {
     [T.FLOWERS]: ['Rows of tulips! So many colors. But none are golden.'],
     [T.BRIDGE]: ['A stone bridge over the canal. I can feel the spray.'],
+    [T.PATH]: ["I bet Stefy has never seen this many tulips. She'd love it here."],
   },
   3: {
     [T.FLOWERS]: ['Endless lavender fields. The purple stretches to the horizon.'],
     [T.BRIDGE]: ['A little stone crossing. The brook splashes below.'],
+    [T.PATH]: ["Stefy wore a lavender scarf once. I noticed. Nobody else noticed that I noticed."],
   },
   4: {
     [T.BRIDGE]: ['A vine bridge! It sways as I walk. Better not look down.'],
+    [T.PATH]: ["What if Stefy already has a boyfriend? ...no. Don't think about that. Just find the flower."],
   },
   5: {
     [T.SAND]: ['Sand everywhere. It gets in my shoes...'],
+    [T.PATH]: ["Five flowers down. Stefy's bouquet is going to be amazing. She has to like it... right?"],
   },
   6: {
     [T.BUSH]: ['Sea grass and heather. The wind bends it sideways.'],
+    [T.PATH]: ["Almost home. One more flower and then... I actually have to TALK to her. Oh no."],
   },
   7: {
     [T.FLOWERS]: ['A field of sunflowers, all facing the sun!'],
+    [T.PATH]: ["OK Mikkel, just be cool. Give her the flowers. Don't say anything weird. Easy. Totally easy."],
   },
 };
 
@@ -288,6 +295,7 @@ export class LevelScene extends Scene {
     // Update UI
     document.getElementById('location-name').textContent = lv.name;
     document.getElementById('flowers-collected').textContent = this._flowers;
+    this._updateObjective();
 
     // Show intro dialog, then self-talk hint
     const dialog = this.world.globals.dialog;
@@ -458,6 +466,7 @@ export class LevelScene extends Scene {
         q.destroy();
         this.world.globals.audio?.playPickup();
         this._showHintIndicator(false);
+        this._updateObjective();
 
         const lines = [
           { speaker: 'Mikkel', text: `I found the ${q._questName}!` },
@@ -477,8 +486,10 @@ export class LevelScene extends Scene {
         this._flowers++;
         document.getElementById('flowers-collected').textContent = this._flowers;
         f.destroy();
-        this._levelComplete = true;
+        // Only mark level complete on non-final levels (final level completes when giving bouquet to Stefy)
+        if (this._level < TOTAL_LEVELS) this._levelComplete = true;
         this.world.globals.audio?.playPickup();
+        this._updateObjective();
 
         const lines = [
           { speaker: 'Mikkel', text: `I found the ${f._itemName}! It's so beautiful...` },
@@ -527,6 +538,7 @@ export class LevelScene extends Scene {
         if (hasItem) {
           this._questComplete[this._level] = true;
           this.world.globals.audio?.playPickup();
+          this._updateObjective();
           dialog.show(npc._questDialog || [{ speaker: '', text: 'Quest complete!' }], () => {
             this._spawnHiddenFlower();
             // Show gate-opened self-talk if this level has gates
@@ -549,6 +561,7 @@ export class LevelScene extends Scene {
       if (!dd.interacted && npc._hasQuest) {
           dd.interacted = true;
           this._npcTalked[npc._npcId] = true;
+          this._updateObjective();
           const npcData = (lv.npcs || []).find(n => n.id === npc._npcId);
           const riddle = npcData?.riddle;
 
@@ -564,6 +577,7 @@ export class LevelScene extends Scene {
                     // Correct answer!
                     this._riddleAnswered[npc._npcId] = true;
                     this._spawnQuestItems();
+                    this._updateObjective();
                     setTimeout(() => {
                       dialog.show(riddle.correctDialog, () => {
                         // Show "what to find" hint automatically
@@ -586,6 +600,7 @@ export class LevelScene extends Scene {
             dialog.show(dd.lines, () => {
               this._riddleAnswered[npc._npcId] = true;
               this._spawnQuestItems();
+              this._updateObjective();
               if (lv.hintAfterNpc && lv.hintAfterNpc.length > 0) {
                 setTimeout(() => dialog.show(lv.hintAfterNpc, () => {
                   this._showHintIndicator(true);
@@ -715,9 +730,53 @@ export class LevelScene extends Scene {
 
   _triggerGirl() {
     this._levelComplete = true;
+    this._updateObjective();
     this.world.globals.dialog.show(ENDING_DIALOG, () => {
       this.manager.transitionTo('ending');
     });
+  }
+
+  _updateObjective() {
+    const el = document.getElementById('objective-display');
+    if (!el) return;
+    const lv = LEVELS[this._level];
+
+    if (this._levelComplete) {
+      el.classList.add('hidden');
+      return;
+    }
+
+    let text = '';
+    if (this._level === 7) {
+      // Final level: no quest NPC
+      if (this._flowers < TOTAL_FLOWERS) {
+        text = `Find the ${lv.items[0]?.name || 'flower'}`;
+      } else {
+        text = 'Give the bouquet to Stefy';
+      }
+    } else if (this._questComplete[this._level]) {
+      // Quest done, flower revealed
+      text = `Find the ${lv.items[0]?.name || 'flower'}`;
+    } else if (this._questItemsHeld[lv.npcs[0]?.requiresItem]) {
+      // Have the quest item, return to NPC
+      const npcName = lv.npcs[0]?.dialog[0]?.speaker || 'the NPC';
+      text = `Return to ${npcName}`;
+    } else if (this._riddleAnswered[lv.npcs[0]?.id]) {
+      // Riddle solved, find the quest item
+      const qItem = lv.questItems?.[0];
+      text = qItem ? `Find the ${qItem.name}` : 'Complete the task';
+    } else if (this._npcTalked[lv.npcs[0]?.id]) {
+      // Talked but riddle not yet answered
+      const npcName = lv.npcs[0]?.dialog[0]?.speaker || 'the NPC';
+      text = `Solve ${npcName}'s riddle`;
+    } else {
+      // Haven't talked to quest NPC yet
+      const npcName = lv.npcs[0]?.dialog[0]?.speaker || 'someone';
+      text = `Talk to ${npcName}`;
+    }
+
+    el.textContent = '📋 ' + text;
+    el.classList.remove('hidden');
   }
 
   _nextLevel() {

@@ -24,19 +24,19 @@ export const SPR_PLAYER = [
 
 // Girl sprite (16×16) - Stefy
 export const SPR_GIRL = [
-  '...8888888......',
-  '..888888888.....',
-  '..888888888.....',
-  '..8111111188....',
-  '..81v11v1188....',
-  '..81111111.8....',
-  '..81111118.8....',
-  '..8.77777..8....',
-  '..8.99999..8....',
-  '..8.99999..8....',
-  '...999999998....',
-  '...9999999......',
-  '...9999999......',
+  '..88888888......',
+  '.8888888888.....',
+  '.8888888888.....',
+  '.881111118......',
+  '.881v11v188.....',
+  '.8811111188.....',
+  '.8811111188.....',
+  '.888777788......',
+  '.889999988......',
+  '..89999988......',
+  '..89999988......',
+  '..88999888......',
+  '...999999.......',
   '...99..99.......',
   '...11..11.......',
   '...55..55.......',
@@ -44,22 +44,102 @@ export const SPR_GIRL = [
 
 // NPC base (parameterized: H=hair, S=shirt, P=pants)
 export const SPR_NPC = [
-  '....HHHHHH.....',
-  '...HHHHHHHH....',
-  '...HHHHHHHH....',
-  '...1111111.....',
-  '...1v11v11.....',
-  '...1111111.....',
-  '...1111111.....',
-  '....SSSSSS.....',
-  '...SSSSSSSS....',
-  '...SSSSSSSS....',
-  '...SS....SS....',
-  '...SSSSSSSS....',
-  '....PPPPPP.....',
-  '...PPPPPPPP....',
-  '...PP....PP....',
-  '...55....55....',
+  '....HHHHHH......',
+  '...HHHHHHHH.....',
+  '...HHHHHHHH.....',
+  '...1111111......',
+  '...1v11v11......',
+  '...1111111......',
+  '...1111111......',
+  '....SSSSSS......',
+  '...SSSSSSSS.....',
+  '...SSSSSSSS.....',
+  '...SS....SS.....',
+  '...SSSSSSSS.....',
+  '....PPPPPP......',
+  '...PPPPPPPP.....',
+  '...PP....PP.....',
+  '...55....55.....',
+];
+
+// Robed/elderly NPC (long robe, no visible pants)
+export const SPR_NPC_ROBED = [
+  '....HHHHHH......',
+  '...HHHHHHHH.....',
+  '...HHHHHHHH.....',
+  '...1111111......',
+  '...1v11v11......',
+  '...1111111......',
+  '...1111111......',
+  '....SSSSSS......',
+  '...SSSSSSSS.....',
+  '...SSSSSSSS.....',
+  '...SSSSSSSS.....',
+  '...SSSSSSSS.....',
+  '...SSSSSSSS.....',
+  '...SS.SS.SS.....',
+  '...SS.SS.SS.....',
+  '...55....55.....',
+];
+
+// Small animal (cat, seagull shape — H=body, S=highlight, P=tail/feet)
+export const SPR_ANIMAL_SMALL = [
+  '................',
+  '................',
+  '................',
+  '................',
+  '...HH...HH......',
+  '...HHHHHH.......',
+  '..HHHHHHHH......',
+  '..HHSHSHSHH.....',
+  '..HHvHHvHH......',
+  '..HHHHHHHH......',
+  '..HHHHHHHHPP....',
+  '..HHHHHHHH.P....',
+  '..HHHHHHHH......',
+  '...HHHHHH.......',
+  '...PP..PP.......',
+  '................',
+];
+
+// Large animal (camel shape — H=body, S=hump/mane, P=legs)
+export const SPR_ANIMAL_LARGE = [
+  '................',
+  '................',
+  '.....SSS........',
+  '..HHHSSSHHH.....',
+  '..HHHHHHHHH.....',
+  '.HHHHHHHHHH.....',
+  '.HHvHHHHHHH.....',
+  '.HHHHHHHHHHH....',
+  '.HHHHHHHHHHH....',
+  '.HHHHHHHHHHH....',
+  '..HHHHHHHHHH....',
+  '..PP..PP..PP....',
+  '..PP..PP..PP....',
+  '..PP..PP..PP....',
+  '................',
+  '................',
+];
+
+// Bird (parrot/macaw — H=body, S=wing, P=beak/feet)
+export const SPR_ANIMAL_BIRD = [
+  '................',
+  '................',
+  '................',
+  '....HHHH........',
+  '...HHHHHH.......',
+  '...HHvvHH.......',
+  '..PPHHHH........',
+  '..P.HHHH........',
+  '....SSSSSS......',
+  '...SSHHHSS......',
+  '...SSHHHHSS.....',
+  '...SSHHHHSS.....',
+  '....HHHHHH......',
+  '.....HHHH.......',
+  '....PP.PP.......',
+  '................',
 ];
 
 // Flower sprite (16×16, parameterized: b=petals, u=center, c=stem)
@@ -239,11 +319,23 @@ export const FLOWER_SPRITES = [
 ];
 
 // NPC style configs: [hairPalIdx, shirtPalIdx, pantsPalIdx]
+// NPC style configs: [hairPalIdx, shirtPalIdx, pantsPalIdx, spriteType]
+// spriteType: 0=normal, 1=robed, 2=small animal, 3=large animal, 4=bird
 export const NPC_STYLES = [
-  [36, 37, 38],  // Japanese gardener
-  [23, 24, 19],  // Dutch farmer / Icelandic hiker
-  [9, 25, 5],    // French painter
-  [5, 11, 26],   // Brazilian guide
+  [36, 37, 38, 0],    // 0: Old Gardener (white hair, blue-grey outfit)
+  [23, 11, 4, 0],     // 1: Farmer Hans (blonde, green shirt, dark pants)
+  [9, 25, 19, 0],     // 2: Painter Marie (red hair, purple shirt, grey pants)
+  [5, 11, 26, 0],     // 3: Guide Carlos (black hair, green shirt, jungle pants)
+  [5, 7, 21, 1],      // 4: Merchant Youssef (black hair, white robe)
+  [23, 3, 4, 0],      // 5: Fisherman Lars (blonde, blue shirt, dark pants)
+  [36, 37, 38, 1],    // 6: Monk (white hair, grey robe)
+  [28, 28, 5, 2],     // 7: Cat (orange body, orange highlight, black feet)
+  [7, 6, 11, 0],      // 8: Baker Pierre (white hat, brown apron, green pants)
+  [9, 3, 33, 4],      // 9: Macaw/Parrot (red body, blue wing, yellow beak)
+  [21, 6, 5, 3],      // 10: Camel (sand body, brown hump, black legs)
+  [7, 34, 28, 2],     // 11: Seagull (white body, grey wing, orange feet)
+  [36, 20, 19, 1],    // 12: Old Lady Inge (white hair, lavender dress)
+  [36, 9, 5, 1],      // 13: Nonna Rosa (white hair, red dress)
 ];
 
 // Flower color configs: [petalPalIdx, centerPalIdx, stemPalIdx]
@@ -253,6 +345,6 @@ export const FLOWER_COLORS = [
   [20, 7, 12],   // Silver Lavender (purple petals, white center, dark green stem)
   [29, 27, 12],  // Rainbow Orchid (cyan petals, purple center, dark green stem)
   [9, 33, 12],   // Desert Rose (red petals, yellow center, dark green stem)
-  [33, 5, 12],   // Arctic Poppy (yellow petals, black center, dark green stem)
+  [14, 3, 12],   // Danish Bluebell (blue petals, dark blue center, dark green stem)
   [28, 6, 12],   // Italian Sunflower (orange petals, brown center, dark green stem)
 ];

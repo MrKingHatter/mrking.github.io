@@ -111,6 +111,7 @@ body {
   right: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   pointer-events: none;
   z-index: 5;
 }
@@ -123,6 +124,19 @@ body {
   color: #f0e6d3;
   font-size: 13px;
 }
+
+#objective-display {
+  background: rgba(10, 10, 30, 0.85);
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: #ffd700;
+  font-size: 12px;
+  max-width: 240px;
+  text-align: center;
+}
+
+#objective-display.hidden { display: none; }
 
 #location-name {
   background: rgba(10, 10, 30, 0.8);

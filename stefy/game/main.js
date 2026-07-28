@@ -10,7 +10,7 @@ import {
 } from '../engine/index.js';
 
 import { PALETTE } from './data/palette.js';
-import { SPR_PLAYER, SPR_GIRL, SPR_NPC, SPR_FLOWER, FLOWER_SPRITES, NPC_STYLES, FLOWER_COLORS } from './data/sprites.js';
+import { SPR_PLAYER, SPR_GIRL, SPR_NPC, SPR_NPC_ROBED, SPR_ANIMAL_SMALL, SPR_ANIMAL_LARGE, SPR_ANIMAL_BIRD, SPR_FLOWER, FLOWER_SPRITES, NPC_STYLES, FLOWER_COLORS } from './data/sprites.js';
 import { TitleScene } from './scenes/title.js';
 import { LevelScene } from './scenes/level.js';
 import { EndingScene } from './scenes/ending.js';
@@ -31,8 +31,10 @@ function generateAssets(renderer) {
   girlSprite.render(sheet, 16, 0);
   sheet.defineRegion('girl', 16, 0, 16, 16);
 
-  const npcSprite = new PaletteSprite(SPR_NPC, PALETTE, { v: 31 });
+  const npcTemplates = [SPR_NPC, SPR_NPC_ROBED, SPR_ANIMAL_SMALL, SPR_ANIMAL_LARGE, SPR_ANIMAL_BIRD];
   NPC_STYLES.forEach((style, i) => {
+    const template = npcTemplates[style[3] || 0];
+    const npcSprite = new PaletteSprite(template, PALETTE, { v: 31 });
     npcSprite.render(sheet, 32 + i * 16, 0, { H: style[0], S: style[1], P: style[2] });
     sheet.defineRegion(`npc_${i}`, 32 + i * 16, 0, 16, 16);
   });
