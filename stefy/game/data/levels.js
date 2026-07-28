@@ -678,8 +678,8 @@ export const LEVELS = [null,
 
 // Ending dialog
 export const ENDING_DIALOG = [
-  { speaker: 'Stefy', text: "Oh! You're... Mikkel, right? From school?" },
-  { speaker: 'Mikkel', text: 'H-hi Stefy! Yes! I... I brought you something.' },
+  { speaker: 'Stefy', text: "Oh! You're... Mikkel, right? From Emma's stream?" },
+  { speaker: 'Mikkel', text: 'Hi Stefy! Yes! I... I brought you something.' },
   { speaker: 'Mikkel', text: 'A Cherry Blossom from Japan... a Golden Tulip from the Netherlands...' },
   { speaker: 'Mikkel', text: 'Silver Lavender from France... a Rainbow Orchid from Brazil...' },
   { speaker: 'Mikkel', text: 'A Desert Rose from Morocco... a Danish Bluebell from home...' },
