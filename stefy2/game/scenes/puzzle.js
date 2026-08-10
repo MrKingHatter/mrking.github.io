@@ -59,6 +59,7 @@ export class PuzzleScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('puzzle');
     const level = LEVELS_L2;
     this.goalReached = false;
     this.selfTalkTriggered = {};

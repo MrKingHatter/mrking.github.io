@@ -1,38 +1,269 @@
 /**
  * audio.js - Audio System
- * Procedural sound effects and background music via Web Audio API.
+ * Procedural sound effects and per-scene background music via Web Audio API.
  * No external audio files needed.
  */
 
 import { System } from './core.js';
 
-// --- Chiptune Music Data ---
-// Notes as MIDI-style numbers (C4=60). 0 = rest.
 const NOTE_FREQ = n => n === 0 ? 0 : 440 * Math.pow(2, (n - 69) / 12);
 
-// Sneaky night-time melody — minor key, sparse, suspenseful
-const MELODY = [
-  64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
-  67, 0, 0, 0, 66, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
-  63, 0, 0, 0, 60, 0, 0, 0, 63, 0, 64, 0, 0, 0, 0, 0,
-  67, 0, 0, 0, 0, 0, 63, 0, 60, 0, 0, 0, 0, 0, 0, 0,
-];
-
-// Deep sparse bass — root notes with long rests
-const BASS = [
-  40, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0,
-  43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0,
-  39, 0, 0, 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 0,
-  43, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0,
-];
-
-// Quiet high shimmer — sparse twinkling notes
-const ARP = [
-  76, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  79, 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0,
-  72, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  79, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0,
-];
+// Per-scene music tracks: { melody, bass, arp, bpm, melodyType, bassType, arpType, melodyVol, bassVol, arpVol }
+const TRACKS = {
+  title: {
+    bpm: 65,
+    melody: [
+      60, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 67, 0, 0, 0,
+      0, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      60, 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 0, 64, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.25, bassVol: 0.3, arpVol: 0.06,
+  },
+  prologue: {
+    bpm: 55,
+    melody: [
+      60, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+      65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      67, 0, 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 0,
+      64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      0, 0, 0, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.2, bassVol: 0.2, arpVol: 0.05,
+  },
+  stealth: {
+    bpm: 80,
+    melody: [
+      64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+      67, 0, 0, 0, 66, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+      63, 0, 0, 0, 60, 0, 0, 0, 63, 0, 64, 0, 0, 0, 0, 0,
+      67, 0, 0, 0, 0, 0, 63, 0, 60, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      40, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0,
+      43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0,
+      39, 0, 0, 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 0,
+      43, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      76, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      79, 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0,
+      72, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      79, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.3, bassVol: 0.4, arpVol: 0.08,
+  },
+  puzzle: {
+    bpm: 90,
+    melody: [
+      60, 0, 64, 0, 67, 0, 0, 0, 65, 0, 0, 0, 64, 0, 0, 0,
+      62, 0, 0, 0, 60, 0, 0, 0, 62, 0, 64, 0, 0, 0, 0, 0,
+      65, 0, 67, 0, 69, 0, 0, 0, 67, 0, 0, 0, 65, 0, 0, 0,
+      64, 0, 0, 0, 62, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      48, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 0,
+      43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      72, 0, 0, 0, 76, 0, 0, 0, 79, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0,
+      72, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 79, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.3, bassVol: 0.35, arpVol: 0.08,
+  },
+  chase: {
+    bpm: 120,
+    melody: [
+      65, 0, 69, 0, 72, 0, 69, 0, 65, 0, 0, 0, 67, 0, 0, 0,
+      69, 0, 72, 0, 74, 0, 0, 0, 72, 0, 69, 0, 0, 0, 0, 0,
+      65, 0, 67, 0, 69, 0, 72, 0, 74, 0, 0, 0, 72, 0, 0, 0,
+      69, 0, 0, 0, 67, 0, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      41, 0, 0, 0, 41, 0, 0, 0, 41, 0, 0, 0, 41, 0, 0, 0,
+      43, 0, 0, 0, 43, 0, 0, 0, 43, 0, 0, 0, 43, 0, 0, 0,
+      45, 0, 0, 0, 45, 0, 0, 0, 45, 0, 0, 0, 45, 0, 0, 0,
+      43, 0, 0, 0, 43, 0, 0, 0, 41, 0, 0, 0, 41, 0, 0, 0,
+    ],
+    arp: [
+      77, 0, 72, 0, 0, 0, 77, 0, 72, 0, 0, 0, 77, 0, 72, 0,
+      79, 0, 74, 0, 0, 0, 79, 0, 74, 0, 0, 0, 0, 0, 0, 0,
+      77, 0, 72, 0, 0, 0, 77, 0, 72, 0, 0, 0, 77, 0, 72, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'square', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.25, bassVol: 0.4, arpVol: 0.07,
+  },
+  explore: {
+    bpm: 75,
+    melody: [
+      62, 0, 0, 0, 0, 0, 65, 0, 0, 0, 0, 0, 69, 0, 0, 0,
+      0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      65, 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 0, 60, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      74, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.25, bassVol: 0.3, arpVol: 0.06,
+  },
+  trade: {
+    bpm: 95,
+    melody: [
+      62, 0, 65, 0, 0, 0, 67, 0, 69, 0, 0, 0, 67, 0, 0, 0,
+      65, 0, 0, 0, 62, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0,
+      62, 0, 0, 0, 65, 0, 67, 0, 69, 0, 0, 0, 70, 0, 69, 0,
+      67, 0, 0, 0, 65, 0, 0, 0, 62, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      38, 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0,
+      41, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0,
+      43, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0,
+      41, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0,
+    ],
+    arp: [
+      74, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 74, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      74, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 74, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'square', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.2, bassVol: 0.35, arpVol: 0.06,
+  },
+  precision: {
+    bpm: 60,
+    melody: [
+      67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      62, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.2, bassVol: 0.25, arpVol: 0.05,
+  },
+  finale: {
+    bpm: 110,
+    melody: [
+      60, 0, 64, 0, 67, 0, 72, 0, 0, 0, 71, 0, 72, 0, 0, 0,
+      69, 0, 0, 0, 67, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      65, 0, 69, 0, 72, 0, 76, 0, 0, 0, 74, 0, 72, 0, 0, 0,
+      69, 0, 67, 0, 64, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      48, 0, 0, 0, 48, 0, 0, 0, 48, 0, 0, 0, 48, 0, 0, 0,
+      45, 0, 0, 0, 45, 0, 0, 0, 45, 0, 0, 0, 45, 0, 0, 0,
+      41, 0, 0, 0, 41, 0, 0, 0, 41, 0, 0, 0, 41, 0, 0, 0,
+      43, 0, 0, 0, 43, 0, 0, 0, 48, 0, 0, 0, 48, 0, 0, 0,
+    ],
+    arp: [
+      72, 0, 76, 0, 79, 0, 0, 0, 76, 0, 72, 0, 0, 0, 0, 0,
+      69, 0, 72, 0, 76, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0,
+      77, 0, 72, 0, 77, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0,
+      76, 0, 72, 0, 76, 0, 0, 0, 79, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'square', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.3, bassVol: 0.4, arpVol: 0.08,
+  },
+  vignette: {
+    bpm: 50,
+    melody: [
+      64, 0, 0, 0, 0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      65, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'sine', arpType: 'sine',
+    melodyVol: 0.2, bassVol: 0.15, arpVol: 0.05,
+  },
+  levelselect: {
+    bpm: 100,
+    melody: [
+      67, 0, 0, 0, 69, 0, 0, 0, 71, 0, 0, 0, 72, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      72, 0, 0, 0, 71, 0, 0, 0, 69, 0, 0, 0, 67, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    bass: [
+      43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0,
+      48, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0,
+      45, 0, 0, 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 0,
+      43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    arp: [
+      79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    melodyType: 'sine', bassType: 'triangle', arpType: 'sine',
+    melodyVol: 0.25, bassVol: 0.3, arpVol: 0.06,
+  },
+};
 
 export class AudioSystem extends System {
   constructor() {
@@ -45,12 +276,11 @@ export class AudioSystem extends System {
     this._musicTimer = null;
     this._musicStep = 0;
     this._musicEnabled = true;
-    this._bpm = 80;
+    this._track = TRACKS.title;
   }
 
   init(world) {
     world.globals.audio = this;
-    // Defer AudioContext creation until user interaction (browser policy)
     const unlock = () => {
       if (!this._ctx) {
         this._ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -70,6 +300,17 @@ export class AudioSystem extends System {
   }
 
   // --- Music ---
+
+  setTrack(name) {
+    const t = TRACKS[name];
+    if (!t || t === this._track) return;
+    this._track = t;
+    this._musicStep = 0;
+    if (this._musicPlaying) {
+      this.stopMusic();
+      this.startMusic();
+    }
+  }
 
   startMusic() {
     if (this._musicPlaying || !this._ctx) return;
@@ -95,20 +336,18 @@ export class AudioSystem extends System {
 
   _scheduleMusic() {
     if (!this._musicPlaying || !this._ctx) return;
-    const beatDur = 60 / this._bpm;
-    const step = this._musicStep % MELODY.length;
+    const track = this._track;
+    const beatDur = 60 / track.bpm;
+    const step = this._musicStep % track.melody.length;
 
-    // Melody voice (sine, soft and mysterious)
-    const melNote = MELODY[step];
-    if (melNote) this._playMusicNote(NOTE_FREQ(melNote), beatDur * 0.9, 'sine', 0.3);
+    const melNote = track.melody[step];
+    if (melNote) this._playMusicNote(NOTE_FREQ(melNote), beatDur * 0.9, track.melodyType, track.melodyVol);
 
-    // Bass voice (triangle, deep and warm)
-    const bassNote = BASS[step];
-    if (bassNote) this._playMusicNote(NOTE_FREQ(bassNote), beatDur * 1.2, 'triangle', 0.4);
+    const bassNote = track.bass[step];
+    if (bassNote) this._playMusicNote(NOTE_FREQ(bassNote), beatDur * 1.2, track.bassType, track.bassVol);
 
-    // Shimmer voice (sine, barely audible twinkle)
-    const arpNote = ARP[step];
-    if (arpNote) this._playMusicNote(NOTE_FREQ(arpNote), beatDur * 0.5, 'sine', 0.08);
+    const arpNote = track.arp[step];
+    if (arpNote) this._playMusicNote(NOTE_FREQ(arpNote), beatDur * 0.5, track.arpType, track.arpVol);
 
     this._musicStep++;
     this._musicTimer = setTimeout(() => this._scheduleMusic(), beatDur * 1000);

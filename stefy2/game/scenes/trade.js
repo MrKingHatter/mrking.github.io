@@ -63,6 +63,7 @@ export class TradeScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('trade');
     const level = LEVELS_L5;
     this.goalReached = false;
     this.npcDialogIdx = {};

@@ -138,6 +138,7 @@ export class VignetteScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('vignette');
     this._levelIdx = params?.levelIdx ?? 0;
     this._charIdx = 0;
     this._timer = 0;

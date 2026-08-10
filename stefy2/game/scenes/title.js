@@ -10,6 +10,7 @@ export class TitleScene extends Scene {
   }
 
   enter() {
+    this.world?.globals?.audio?.setTrack('title');
     const titleEl = document.getElementById('title-screen');
     titleEl.style.display = 'flex';
 

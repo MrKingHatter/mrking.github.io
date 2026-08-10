@@ -63,6 +63,7 @@ export class PrecisionScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('precision');
     const level = LEVELS_L6;
     this.goalReached = false;
     this.selfTalkTriggered = {};

@@ -73,6 +73,7 @@ export class ExploreScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('explore');
     const level = LEVELS_L4;
     this.goalReached = false;
     this.selfTalkTriggered = {};

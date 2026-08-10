@@ -25,6 +25,7 @@ export class LevelSelectScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('levelselect');
     this._canvas = document.getElementById('game-canvas');
     this._ctx = this._canvas.getContext('2d');
     this._selected = 0;

@@ -79,6 +79,7 @@ export class PrologueScene extends Scene {
   }
 
   enter() {
+    this.world?.globals?.audio?.setTrack('prologue');
     this._pageIdx = 0;
     this._lineIdx = 0;
     this._charIdx = 0;

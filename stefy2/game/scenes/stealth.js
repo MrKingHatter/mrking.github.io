@@ -84,6 +84,7 @@ export class StealthScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('stealth');
     this.levelIdx = params?.levelIdx ?? 0;
     const level = LEVELS[this.levelIdx];
     this.detected = false;

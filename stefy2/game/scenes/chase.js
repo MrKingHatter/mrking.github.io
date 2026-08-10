@@ -71,6 +71,7 @@ export class ChaseScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('chase');
     const level = LEVELS_L3;
     this.goalReached = false;
     this.selfTalkTriggered = {};

@@ -90,6 +90,7 @@ export class FinaleScene extends Scene {
   }
 
   enter(params) {
+    this.world?.globals?.audio?.setTrack('finale');
     const level = LEVELS_L7;
     this.goalReached = false;
     this.npcDialogIdx = {};
