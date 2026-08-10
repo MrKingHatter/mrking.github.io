@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowers for Stefy - Level Editor</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; color: #f0e6d3; font-family: monospace; display: flex; height: 100vh; overflow: hidden; }
+
+/* Sidebar */
+#sidebar { width: 220px; background: #16213e; border-right: 2px solid #333; display: flex; flex-direction: column; }
+#sidebar h2 { padding: 10px; text-align: center; color: #ffcc66; font-size: 14px; border-bottom: 1px solid #333; }
+#level-select { margin: 8px; padding: 4px; background: #0f3460; color: #f0e6d3; border: 1px solid #555; font-family: monospace; }
+.tool-group { padding: 8px; border-bottom: 1px solid #333; }
+.tool-group h3 { font-size: 11px; color: #aed9e0; margin-bottom: 6px; }
+#tile-palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.tile-btn { width: 36px; height: 36px; border: 2px solid #333; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; text-shadow: 0 0 2px #000; }
+.tile-btn.active { border-color: #ffd700; box-shadow: 0 0 6px #ffd700; }
+.tile-btn:hover { border-color: #aed9e0; }
+
+/* Entity buttons */
+.entity-group { display: flex; flex-wrap: wrap; gap: 3px; }
+.entity-btn { padding: 3px 6px; background: #0f3460; border: 1px solid #555; color: #f0e6d3; cursor: pointer; font-size: 10px; font-family: monospace; }
+.entity-btn.active { border-color: #ffd700; color: #ffd700; }
+.entity-btn:hover { border-color: #aed9e0; }
+
+/* Tools */
+.tool-row { display: flex; gap: 4px; margin-bottom: 4px; }
+.tool-btn { flex: 1; padding: 4px; background: #0f3460; border: 1px solid #555; color: #f0e6d3; cursor: pointer; font-size: 10px; font-family: monospace; text-align: center; }
+.tool-btn.active { border-color: #ffd700; color: #ffd700; }
+.tool-btn:hover { border-color: #aed9e0; }
+
+/* Main area */
+#main { flex: 1; display: flex; flex-direction: column; }
+#toolbar { padding: 6px 10px; background: #0f3460; border-bottom: 1px solid #333; display: flex; gap: 8px; align-items: center; font-size: 12px; }
+#toolbar button { padding: 4px 10px; background: #16213e; border: 1px solid #555; color: #f0e6d3; cursor: pointer; font-family: monospace; }
+#toolbar button:hover { border-color: #ffd700; color: #ffd700; }
+#canvas-wrap { flex: 1; overflow: auto; position: relative; background: #111; }
+#editor-canvas { image-rendering: pixelated; cursor: crosshair; }
+#statusbar { padding: 4px 10px; background: #0f3460; border-top: 1px solid #333; font-size: 11px; display: flex; gap: 16px; }
+#export-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center; }
+#export-modal.show { display: flex; }
+#export-box { background: #16213e; border: 2px solid #ffd700; padding: 16px; width: 600px; max-height: 80vh; display: flex; flex-direction: column; }
+#export-box h3 { color: #ffd700; margin-bottom: 8px; }
+#export-box textarea { flex: 1; min-height: 300px; background: #0a0a1a; color: #aed9e0; border: 1px solid #333; padding: 8px; font-family: monospace; font-size: 11px; resize: vertical; }
+#export-box .btn-row { margin-top: 8px; display: flex; gap: 8px; }
+#export-box button { padding: 6px 14px; background: #0f3460; border: 1px solid #555; color: #f0e6d3; cursor: pointer; font-family: monospace; }
+</style>
+</head>
+<body>
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <h2>Level Editor</h2>
+  <div class="tool-group">
+    <h3>Level</h3>
+    <select id="level-select"></select>
+  </div>
+  <div class="tool-group">
+    <h3>Tiles</h3>
+    <div id="tile-palette"></div>
+  </div>
+  <div class="tool-group">
+    <h3>Entities</h3>
+    <div class="entity-group" id="entity-palette"></div>
+  </div>
+  <div class="tool-group">
+    <h3>Brush</h3>
+    <div class="tool-row">
+      <button class="tool-btn active" data-brush="paint" title="Paint tiles">🖌 Paint</button>
+      <button class="tool-btn" data-brush="fill" title="Flood fill">🪣 Fill</button>
+    </div>
+    <div class="tool-row">
+      <button class="tool-btn" data-brush="rect" title="Rectangle">▭ Rect</button>
+      <button class="tool-btn" data-brush="erase" title="Erase to grass">✕ Erase</button>
+    </div>
+    <div style="margin-top:6px; font-size:10px; color:#888;">
+      Size: <input type="range" id="brush-size" min="1" max="5" value="1" style="width:80px; vertical-align:middle;">
+      <span id="brush-size-label">1</span>
+    </div>
+  </div>
+  <div class="tool-group" style="flex:1;"></div>
+  <div class="tool-group">
+    <h3>Shortcuts</h3>
+    <div style="font-size:9px; color:#888; line-height:1.6;">
+      G=Grid  Z=Undo  S=Export<br>
+      1-9=Tile select  Del=Erase<br>
+      Click+Drag=Paint  RClick=Pick
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="toolbar">
+    <button id="btn-new">New Map</button>
+    <button id="btn-undo">Undo (Z)</button>
+    <button id="btn-redo">Redo</button>
+    <button id="btn-grid">Grid (G)</button>
+    <button id="btn-export">Export (S)</button>
+    <button id="btn-import">Import</button>
+    <span style="flex:1"></span>
+    <span id="map-info"></span>
+  </div>
+  <div id="canvas-wrap">
+    <canvas id="editor-canvas"></canvas>
+  </div>
+  <div id="statusbar">
+    <span id="status-pos">Pos: 0, 0</span>
+    <span id="status-tile">Tile: GRASS</span>
+    <span id="status-tool">Tool: Paint</span>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div id="export-modal">
+  <div id="export-box">
+    <h3>Map Data</h3>
+    <textarea id="export-text" readonly></textarea>
+    <div class="btn-row">
+      <button id="btn-copy">Copy to Clipboard</button>
+      <button id="btn-close-export">Close</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="editor.js"></script>
+</body>
+</html>

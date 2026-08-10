@@ -11,3 +11,4 @@ export { SpriteSheet, PaletteSprite, AssetPipeline } from './sprites.js';
 export { TileMap, TileMapRenderer, GridPhysics, GridCollider } from './tilemap.js';
 export { DialogSystem, DialogData } from './dialog.js';
 export { AudioSystem } from './audio.js';
+export { StealthSystem, StealthGuard } from './stealth.js';

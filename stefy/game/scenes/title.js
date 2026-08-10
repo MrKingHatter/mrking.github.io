@@ -3,7 +3,7 @@
  * Draws the shared bouquet sprite on the title canvas.
  */
 
-import { Scene } from '../../engine/index.js';
+import { Scene } from '../../../engine/index.js';
 import { drawBouquet } from '../data/bouquet.js';
 
 export class TitleScene extends Scene {

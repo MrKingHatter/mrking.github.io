@@ -10,28 +10,28 @@ import { System } from './core.js';
 // Notes as MIDI-style numbers (C4=60). 0 = rest.
 const NOTE_FREQ = n => n === 0 ? 0 : 440 * Math.pow(2, (n - 69) / 12);
 
-// Cute, gentle melody in C major / A minor — loops every 32 beats
+// Sneaky night-time melody — minor key, sparse, suspenseful
 const MELODY = [
-  72, 0, 76, 0, 79, 0, 76, 0, 72, 0, 74, 0, 76, 72, 0, 0,
-  71, 0, 74, 0, 76, 0, 79, 0, 81, 0, 79, 76, 74, 0, 0, 0,
-  72, 0, 76, 0, 79, 0, 84, 0, 83, 0, 81, 0, 79, 76, 0, 0,
-  74, 0, 76, 0, 74, 72, 71, 0, 72, 0, 0, 0, 0, 0, 0, 0,
+  64, 0, 0, 0, 63, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+  67, 0, 0, 0, 66, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+  63, 0, 0, 0, 60, 0, 0, 0, 63, 0, 64, 0, 0, 0, 0, 0,
+  67, 0, 0, 0, 0, 0, 63, 0, 60, 0, 0, 0, 0, 0, 0, 0,
 ];
 
-// Bass line (lower octave, simple root notes)
+// Deep sparse bass — root notes with long rests
 const BASS = [
-  48, 0, 0, 0, 48, 0, 0, 0, 53, 0, 0, 0, 53, 0, 0, 0,
-  52, 0, 0, 0, 52, 0, 0, 0, 55, 0, 0, 0, 55, 0, 0, 0,
-  48, 0, 0, 0, 48, 0, 0, 0, 53, 0, 0, 0, 53, 0, 0, 0,
-  50, 0, 0, 0, 55, 0, 0, 0, 48, 0, 0, 0, 48, 0, 0, 0,
+  40, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0,
+  43, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0,
+  39, 0, 0, 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 0,
+  43, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0,
 ];
 
-// Arpeggio pattern (gentle background shimmer)
+// Quiet high shimmer — sparse twinkling notes
 const ARP = [
-  60, 64, 67, 72, 60, 64, 67, 72, 65, 69, 72, 77, 65, 69, 72, 77,
-  64, 67, 71, 76, 64, 67, 71, 76, 67, 71, 74, 79, 67, 71, 74, 79,
-  60, 64, 67, 72, 60, 64, 67, 72, 65, 69, 72, 77, 65, 69, 72, 77,
-  62, 65, 69, 74, 67, 71, 74, 79, 60, 64, 67, 72, 60, 64, 67, 72,
+  76, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  79, 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0,
+  72, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  79, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0,
 ];
 
 export class AudioSystem extends System {
@@ -45,7 +45,7 @@ export class AudioSystem extends System {
     this._musicTimer = null;
     this._musicStep = 0;
     this._musicEnabled = true;
-    this._bpm = 140;
+    this._bpm = 80;
   }
 
   init(world) {
@@ -98,17 +98,17 @@ export class AudioSystem extends System {
     const beatDur = 60 / this._bpm;
     const step = this._musicStep % MELODY.length;
 
-    // Melody voice (square, soft)
+    // Melody voice (sine, soft and mysterious)
     const melNote = MELODY[step];
-    if (melNote) this._playMusicNote(NOTE_FREQ(melNote), beatDur * 0.7, 'square', 0.35);
+    if (melNote) this._playMusicNote(NOTE_FREQ(melNote), beatDur * 0.9, 'sine', 0.3);
 
-    // Bass voice (triangle, warm)
+    // Bass voice (triangle, deep and warm)
     const bassNote = BASS[step];
-    if (bassNote) this._playMusicNote(NOTE_FREQ(bassNote), beatDur * 0.9, 'triangle', 0.5);
+    if (bassNote) this._playMusicNote(NOTE_FREQ(bassNote), beatDur * 1.2, 'triangle', 0.4);
 
-    // Arpeggio voice (sine, very quiet shimmer)
+    // Shimmer voice (sine, barely audible twinkle)
     const arpNote = ARP[step];
-    if (arpNote) this._playMusicNote(NOTE_FREQ(arpNote), beatDur * 0.3, 'sine', 0.15);
+    if (arpNote) this._playMusicNote(NOTE_FREQ(arpNote), beatDur * 0.5, 'sine', 0.08);
 
     this._musicStep++;
     this._musicTimer = setTimeout(() => this._scheduleMusic(), beatDur * 1000);

@@ -3,7 +3,7 @@
  * Shows the completed bouquet and a love message.
  */
 
-import { Scene } from '../../engine/index.js';
+import { Scene } from '../../../engine/index.js';
 import { drawBouquet } from '../data/bouquet.js';
 
 export class EndingScene extends Scene {

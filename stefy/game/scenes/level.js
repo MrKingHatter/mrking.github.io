@@ -3,7 +3,7 @@
  * Handles player movement, NPC interaction, item pickup, and level transitions.
  */
 
-import { Scene } from '../../engine/index.js';
+import { Scene } from '../../../engine/index.js';
 import { LEVELS, MAPS, SOLID_TILES, ENDING_DIALOG, TOTAL_LEVELS, TOTAL_FLOWERS, T } from '../data/levels.js';
 
 // Environment interaction dialog per level — tile type → array of random lines

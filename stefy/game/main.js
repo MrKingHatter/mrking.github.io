@@ -7,7 +7,7 @@ import {
   World, RendererSystem, InputSystem, SceneManager,
   TileMapRenderer, GridPhysics, DialogSystem, AudioSystem,
   AssetPipeline, PaletteSprite, CameraFollowSystem,
-} from '../engine/index.js';
+} from '../../engine/index.js';
 
 import { PALETTE } from './data/palette.js';
 import { SPR_PLAYER, SPR_GIRL, SPR_NPC, SPR_NPC_ROBED, SPR_ANIMAL_SMALL, SPR_ANIMAL_LARGE, SPR_ANIMAL_BIRD, SPR_FLOWER, FLOWER_SPRITES, NPC_STYLES, FLOWER_COLORS } from './data/sprites.js';

@@ -12,6 +12,7 @@ export class InputSystem extends System {
     this._keysJustPressed = new Set();
     this._keysJustReleased = new Set();
     this._prevKeys = new Set();
+    this._pressedBuffer = new Set(); // buffer keydowns between frames
     this._mouse = { x: 0, y: 0, down: false, justPressed: false };
     this._actions = new Map(); // action name -> array of key codes
     this._bound = false;
@@ -59,18 +60,24 @@ export class InputSystem extends System {
   get mouse() { return this._mouse; }
 
   update(dt) {
-    // Compute just-pressed and just-released
+    // Compute just-pressed: keys pressed since last frame (from buffer)
     this._keysJustPressed.clear();
     this._keysJustReleased.clear();
 
+    // Include buffered presses (handles rapid press+release between frames)
+    for (const key of this._pressedBuffer) {
+      if (!this._prevKeys.has(key)) this._keysJustPressed.add(key);
+    }
+    // Also include currently held keys not in prevKeys
     for (const key of this._keys) {
       if (!this._prevKeys.has(key)) this._keysJustPressed.add(key);
     }
     for (const key of this._prevKeys) {
-      if (!this._keys.has(key)) this._keysJustReleased.add(key);
+      if (!this._keys.has(key) && !this._pressedBuffer.has(key)) this._keysJustReleased.add(key);
     }
 
     this._prevKeys = new Set(this._keys);
+    this._pressedBuffer.clear();
     this._mouse.justPressed = false;
   }
 
@@ -80,6 +87,7 @@ export class InputSystem extends System {
 
     window.addEventListener('keydown', (e) => {
       this._keys.add(e.code);
+      this._pressedBuffer.add(e.code);
       // Prevent scrolling for game keys
       if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
         e.preventDefault();

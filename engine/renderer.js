@@ -14,6 +14,7 @@ export const Sprite = registerComponent('Sprite', {
   scale: 2,
   offsetX: 0, offsetY: 0,
   visible: true,
+  opacity: 1,
   bobAmount: 0,     // vertical bobbing amplitude
   bobSpeed: 0,      // bobbing frequency
 });
@@ -139,6 +140,7 @@ export class RendererSystem extends System {
         drawY += Math.sin(this._time * spr.bobSpeed + pos.x * 0.5) * spr.bobAmount;
       }
 
+      if (spr.opacity < 1) ctx.globalAlpha = spr.opacity;
       ctx.drawImage(
         sheetCanvas,
         spr.srcX, spr.srcY, spr.srcW, spr.srcH,
@@ -147,6 +149,7 @@ export class RendererSystem extends System {
         spr.srcW * spr.scale,
         spr.srcH * spr.scale
       );
+      if (spr.opacity < 1) ctx.globalAlpha = 1;
     }
   }
 
