@@ -8,6 +8,7 @@ import {
   TileMap, GridCollider, DialogData,
 } from '../../../engine/index.js';
 import { LEVELS_L3 } from '../data/levels.js';
+import { drawFlower } from '../data/flowers.js';
 import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_DIALOG = {
@@ -193,19 +194,18 @@ export class ChaseScene extends Scene {
     if (!cam) return;
     const ctx = renderer.ctx;
 
-    // Draw found wisp markers (faded)
+    // Draw found wisp markers (faded flowers)
     for (const w of this._wisps) {
       if (!w.found) continue;
       const fx = w.col * TILE_SIZE - cam.x + TILE_SIZE / 2;
       const fy = w.row * TILE_SIZE - cam.y + TILE_SIZE / 2;
-      const glow = ctx.createRadialGradient(fx, fy, 2, fx, fy, 14);
-      glow.addColorStop(0, 'rgba(180,140,255,0.35)');
-      glow.addColorStop(1, 'rgba(180,140,255,0)');
-      ctx.fillStyle = glow;
-      ctx.fillRect(fx - 16, fy - 16, 32, 32);
+      ctx.save();
+      ctx.globalAlpha = 0.3;
+      drawFlower(ctx, 2, fx, fy, 1);
+      ctx.restore();
     }
 
-    // Draw current orb permanently visible
+    // Draw current wisp as flower
     const wisp = this._wisps[this._currentWisp];
     if (!wisp || wisp.found || this.goalReached) {
       this._drawProgress(ctx);
@@ -217,25 +217,17 @@ export class ChaseScene extends Scene {
     const pulse = 0.6 + 0.4 * Math.sin(Date.now() / 400);
     const bob = Math.sin(Date.now() / 500) * 3;
 
-    // Outer glow
-    const grad = ctx.createRadialGradient(wx, wy + bob, 3, wx, wy + bob, 35);
-    grad.addColorStop(0, `rgba(180,140,255,${0.45 * pulse})`);
-    grad.addColorStop(0.5, `rgba(140,100,220,${0.2 * pulse})`);
-    grad.addColorStop(1, 'rgba(100,60,180,0)');
+    // Soft glow behind flower
+    const grad = ctx.createRadialGradient(wx, wy + bob, 3, wx, wy + bob, 30);
+    grad.addColorStop(0, `rgba(180,140,255,${0.3 * pulse})`);
+    grad.addColorStop(1, 'rgba(180,140,255,0)');
     ctx.fillStyle = grad;
-    ctx.fillRect(wx - 40, wy + bob - 40, 80, 80);
+    ctx.fillRect(wx - 35, wy + bob - 35, 70, 70);
 
-    // Core orb
-    ctx.beginPath();
-    ctx.arc(wx, wy + bob, 8 * pulse, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(200,160,255,0.9)`;
-    ctx.fill();
-
-    // Inner bright center
-    ctx.beginPath();
-    ctx.arc(wx, wy + bob, 4, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,0.95)';
-    ctx.fill();
+    ctx.save();
+    ctx.globalAlpha = pulse;
+    drawFlower(ctx, 2, wx, wy + bob, 1.5);
+    ctx.restore();
 
     this._drawProgress(ctx);
   }

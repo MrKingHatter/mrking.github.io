@@ -9,6 +9,7 @@ import {
 import { LEVELS } from '../data/levels.js';
 import { VISION_CONE_COLOR } from '../data/sprites.js';
 import { SPRITE_REGIONS, TILE_REGIONS } from '../main.js';
+import { drawFlower } from '../data/flowers.js';
 
 const TILE_SIZE = 32;
 const TILE_CHARS = { g: 0, w: 1, p: 2, t: 3, W: 4, f: 5, s: 6, h: 7, b: 8, r: 9, B: 10, d: 11 };
@@ -165,7 +166,6 @@ export class StealthScene extends Scene {
     // Goal entity
     const goalEntity = world.createEntity();
     goalEntity.add(Position, { x: level.goal.col * TILE_SIZE, y: level.goal.row * TILE_SIZE });
-    goalEntity.add(Sprite, { ...spriteOf('wind_chime'), bobAmount: 3, bobSpeed: 2 });
     goalEntity.tag('goal');
     this.entities.push(goalEntity);
 
@@ -190,7 +190,7 @@ export class StealthScene extends Scene {
       if (dialog) dialog.show(level.intro);
     }
 
-    this._showObjective('Reach the wind chime without being seen');
+    this._showObjective('Reach the cherry blossom without being seen');
 
     // UI
     document.getElementById('location-name').textContent = level.name;
@@ -287,6 +287,19 @@ export class StealthScene extends Scene {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('!', sx, sy);
+      ctx.restore();
+    }
+
+    // Draw flower at goal position
+    if (!this.goalReached) {
+      const level = LEVELS[this.levelIdx];
+      const gx = level.goal.col * TILE_SIZE - cam.x + TILE_SIZE / 2;
+      const gy = level.goal.row * TILE_SIZE - cam.y + TILE_SIZE / 2;
+      const pulse = 0.6 + Math.sin(Date.now() / 500) * 0.3;
+      const bob = Math.sin(Date.now() / 600) * 3;
+      ctx.save();
+      ctx.globalAlpha = pulse;
+      drawFlower(ctx, 0, gx, gy + bob, 1.5);
       ctx.restore();
     }
   }

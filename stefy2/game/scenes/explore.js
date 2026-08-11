@@ -10,6 +10,7 @@ import {
 import { LEVELS_L4 } from '../data/levels.js';
 import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 import { HintSystem } from '../data/hints.js';
+import { drawFlower } from '../data/flowers.js';
 
 const TILE_DIALOG = {
   1: [
@@ -184,7 +185,11 @@ export class ExploreScene extends Scene {
     if (this._revealed.has(goalKey) && !this.goalReached) {
       const gx = LEVELS_L4.goal.col * TILE_SIZE - cam.x + TILE_SIZE / 2;
       const gy = LEVELS_L4.goal.row * TILE_SIZE - cam.y + TILE_SIZE / 2;
-      this._hints.renderGoalGlow(ctx, gx, gy, '#ff6b9d');
+      const pulse = 0.6 + Math.sin(Date.now() / 500) * 0.3;
+      const bob = Math.sin(Date.now() / 600) * 3;
+      ctx.save(); ctx.globalAlpha = pulse;
+      drawFlower(ctx, 3, gx, gy + bob, 1.5);
+      ctx.restore();
     }
 
     // Directional arrow + hint prompt

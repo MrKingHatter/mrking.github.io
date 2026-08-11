@@ -277,6 +277,83 @@ export const GUARD_SPRITE = [
   '0000000000000000',
 ];
 
+// Stefy - long wavy brown hair(c/1), skin(5), floral top(f/8), shorter than Mikkel
+export const STEFY_DOWN = [
+  '0000000000000000',
+  '0000000000000000',
+  '00000cccc0000000',
+  '0000cccccc000000',
+  '000cccccccc00000',
+  '000cc555cc100000',
+  '000c5151c1c00000',
+  '000c55585c100000',
+  '000cc555cc100000',
+  '00c0ffff0c100000',
+  '00c0f8ff0c100000',
+  '000cff8fc1000000',
+  '0000ffff00000000',
+  '00000cc000000000',
+  '0000cccc00000000',
+  '0000110110000000',
+];
+
+export const STEFY_UP = [
+  '0000000000000000',
+  '0000000000000000',
+  '00000cccc0000000',
+  '0000cccccc000000',
+  '000cccccccc00000',
+  '000cccccccc00000',
+  '000ccccccc100000',
+  '000cccccccc00000',
+  '000cc1c1cc100000',
+  '00c0ffff0c100000',
+  '00c0ffff0c100000',
+  '000cffffc1000000',
+  '0000ffff00000000',
+  '00000cc000000000',
+  '0000cccc00000000',
+  '0000110110000000',
+];
+
+export const STEFY_LEFT = [
+  '0000000000000000',
+  '0000000000000000',
+  '0000cccc00000000',
+  '000cccccc0000000',
+  '00ccccccc0000000',
+  '00cc55ccc0000000',
+  '00c515cc00000000',
+  '000555800c000000',
+  '00cc55cc00000000',
+  '00c0fff00c000000',
+  '00c0f8f00c000000',
+  '000cfff0c0000000',
+  '0000fff000000000',
+  '00000cc000000000',
+  '0000ccc000000000',
+  '0000110100000000',
+];
+
+export const STEFY_RIGHT = [
+  '0000000000000000',
+  '0000000000000000',
+  '0000cccc00000000',
+  '000cccccc0000000',
+  '000ccccccc000000',
+  '000ccc55cc000000',
+  '0000cc515c000000',
+  '00c008555c000000',
+  '0000cc55cc000000',
+  '00c00fff0c000000',
+  '00c00f8f0c000000',
+  '000c0fffc0000000',
+  '0000fff000000000',
+  '00000cc000000000',
+  '00000ccc00000000',
+  '0000010110000000',
+];
+
 // Vision cone overlay color (for rendering)
 export const VISION_CONE_COLOR = 'rgba(255, 100, 50, 0.22)';
 export const VISION_CONE_EDGE_COLOR = 'rgba(255, 100, 50, 0.35)';
@@ -287,6 +364,10 @@ export const SPRITES = {
   mikkel_up: MIKKEL_UP,
   mikkel_left: MIKKEL_LEFT,
   mikkel_right: MIKKEL_RIGHT,
+  stefy_down: STEFY_DOWN,
+  stefy_up: STEFY_UP,
+  stefy_left: STEFY_LEFT,
+  stefy_right: STEFY_RIGHT,
   fox_down: FOX_DOWN,
   fox_up: FOX_UP,
   fox_left: FOX_DOWN,

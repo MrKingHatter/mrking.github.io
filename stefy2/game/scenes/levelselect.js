@@ -15,6 +15,10 @@ const LEVELS_META = [
   { id: 'finale', idx: 6, name: 'Piedmont Hills', city: 'Italy', type: 'Finale', flower: 'Italian Sunflower' },
 ];
 
+const DEBUG_EXTRAS = [
+  { id: 'epilogue', idx: -1, name: 'Epilogue', city: '—', type: 'Story', flower: 'Bouquet', debugOnly: true },
+];
+
 export class LevelSelectScene extends Scene {
   constructor() {
     super('levelselect');
@@ -22,6 +26,7 @@ export class LevelSelectScene extends Scene {
     this._canvas = null;
     this._ctx = null;
     this._debugMode = false;
+    this._entries = [...LEVELS_META];
   }
 
   enter(params) {
@@ -30,6 +35,7 @@ export class LevelSelectScene extends Scene {
     this._ctx = this._canvas.getContext('2d');
     this._selected = 0;
     this._debugMode = params?.debug || false;
+    this._entries = this._debugMode ? [...LEVELS_META, ...DEBUG_EXTRAS] : [...LEVELS_META];
     document.getElementById('title-screen').style.display = 'none';
   }
 
@@ -41,13 +47,17 @@ export class LevelSelectScene extends Scene {
       this._selected = Math.max(0, this._selected - 1);
     }
     if (input.isPressed('ArrowDown') || input.isPressed('KeyS')) {
-      this._selected = Math.min(LEVELS_META.length - 1, this._selected + 1);
+      this._selected = Math.min(this._entries.length - 1, this._selected + 1);
     }
     if (input.isPressed('Space') || input.isPressed('Enter')) {
-      const lvl = LEVELS_META[this._selected];
+      const lvl = this._entries[this._selected];
       if (lvl.id) {
         this.world?.globals?.audio?.playTransition();
-        this.manager.switchTo(lvl.id, { levelIdx: lvl.idx });
+        if (lvl.idx >= 0) {
+          this.manager.switchTo(lvl.id, { levelIdx: lvl.idx });
+        } else {
+          this.manager.switchTo(lvl.id);
+        }
       }
     }
   }
@@ -74,26 +84,32 @@ export class LevelSelectScene extends Scene {
     // Level list
     const startY = 100;
     const itemH = 48;
-    for (let i = 0; i < LEVELS_META.length; i++) {
-      const lvl = LEVELS_META[i];
+    for (let i = 0; i < this._entries.length; i++) {
+      const lvl = this._entries[i];
       const y = startY + i * itemH;
       const available = !!lvl.id;
       const sel = i === this._selected;
+      const isDebugEntry = !!lvl.debugOnly;
 
       // Selection highlight
       if (sel) {
-        ctx.fillStyle = 'rgba(174, 217, 224, 0.08)';
+        ctx.fillStyle = isDebugEntry ? 'rgba(255, 100, 100, 0.08)' : 'rgba(174, 217, 224, 0.08)';
         ctx.fillRect(80, y, W - 160, itemH - 4);
-        ctx.strokeStyle = '#aed9e0';
+        ctx.strokeStyle = isDebugEntry ? '#ff6666' : '#aed9e0';
         ctx.lineWidth = 1;
         ctx.strokeRect(80, y, W - 160, itemH - 4);
       }
 
-      // City number
+      // City number or debug marker
       ctx.font = 'bold 14px "Segoe UI", sans-serif';
       ctx.textAlign = 'left';
-      ctx.fillStyle = available ? (sel ? '#ffd700' : '#aed9e0') : '#3a3a4a';
-      ctx.fillText(`${i + 1}.`, 100, y + 20);
+      if (isDebugEntry) {
+        ctx.fillStyle = sel ? '#ff9999' : '#ff6666';
+        ctx.fillText('✧', 100, y + 20);
+      } else {
+        ctx.fillStyle = available ? (sel ? '#ffd700' : '#aed9e0') : '#3a3a4a';
+        ctx.fillText(`${i + 1}.`, 100, y + 20);
+      }
 
       // Level name
       ctx.font = '14px "Segoe UI", sans-serif';
@@ -120,8 +136,13 @@ export class LevelSelectScene extends Scene {
     ctx.fillText('↑↓ to select · Space to begin', W / 2, H - 30);
     ctx.globalAlpha = 1;
 
-    // Draw flower for selected level
-    drawFlower(ctx, this._selected, W - 85, 45, 2);
+    // Draw flower or bouquet for selected level
+    const selEntry = this._entries[this._selected];
+    if (selEntry && selEntry.idx >= 0) {
+      drawFlower(ctx, this._selected, W - 85, 45, 2);
+    } else {
+      drawBouquet(ctx, W - 100, 25, [0, 1, 2, 3, 4, 5, 6]);
+    }
 
     if (this._debugMode) {
       ctx.font = '9px monospace';

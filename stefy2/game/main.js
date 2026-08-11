@@ -18,6 +18,7 @@ import { TradeScene } from './scenes/trade.js';
 import { PrecisionScene } from './scenes/precision.js';
 import { FinaleScene } from './scenes/finale.js';
 import { VignetteScene } from './scenes/vignette.js';
+import { EpilogueScene } from './scenes/epilogue.js';
 import { SPRITES, PALETTE } from './data/sprites.js';
 
 // ─── Asset Generation ───
@@ -237,6 +238,7 @@ scenes.register(new TradeScene());
 scenes.register(new PrecisionScene());
 scenes.register(new FinaleScene());
 scenes.register(new VignetteScene());
+scenes.register(new EpilogueScene());
 
 // Start
 scenes.switchTo('title');

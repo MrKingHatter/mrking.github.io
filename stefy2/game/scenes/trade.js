@@ -9,6 +9,7 @@ import {
 } from '../../../engine/index.js';
 import { LEVELS_L5 } from '../data/levels.js';
 import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
+import { drawFlower } from '../data/flowers.js';
 
 const TILE_DIALOG = {
   4: [
@@ -178,12 +179,10 @@ export class TradeScene extends Scene {
     if (this._rooftopUnlocked && !this.goalReached) {
       const gx = LEVELS_L5.goal.col * TILE_SIZE - cam.x + TILE_SIZE / 2;
       const gy = LEVELS_L5.goal.row * TILE_SIZE - cam.y + TILE_SIZE / 2;
-      const pulse = 0.4 + Math.sin(Date.now() / 400) * 0.3;
+      const pulse = 0.6 + Math.sin(Date.now() / 400) * 0.3;
+      const bob = Math.sin(Date.now() / 600) * 3;
       ctx.save(); ctx.globalAlpha = pulse;
-      ctx.fillStyle = '#e8a87c';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('★', gx, gy - 4);
+      drawFlower(ctx, 4, gx, gy + bob - 4, 1.5);
       ctx.restore();
     }
   }
