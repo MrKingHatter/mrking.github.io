@@ -10,7 +10,7 @@ const PAGES = [
     lines: [
       'One month after that night in the park...',
       'The bouquet sits on Stefy\'s windowsill. Still in water.',
-      'She sent him a photo. "Look, still alive! I am good plant mother, no?"',
+      'She sent him a photo. "Look! Still alive! I am good plant mother, no?"',
     ],
   },
   {
@@ -24,7 +24,7 @@ const PAGES = [
   {
     bg: '#0a0a1a',
     lines: [
-      '"They are just flowers," she says, twisting her hair around one finger.',
+      '"They are just flowers," she says, twisting her pretty dark hair around one finger.',
       'But she waters them every day. He\'s seen her do it mid-call.',
       '"I am... tending? Tending them." (She always asks if her English sounds weird.)',
     ],
@@ -32,7 +32,7 @@ const PAGES = [
   {
     bg: '#0d0d20',
     lines: [
-      'Tucked inside the vase, a note. Nonna Rosa\'s handwriting.',
+      'Tucked inside the vase, Stefy notices, a note. Nonna Rosa\'s handwriting.',
       'How long has it been there?',
     ],
   },
@@ -47,7 +47,7 @@ const PAGES = [
   {
     bg: '#0d0d20',
     lines: [
-      'Seven flowers. Seven cities. Seven questionable life decisions.',
+      'Seven flowers. Seven cities. Seven memories.',
       'If he can remember why... really remember...',
       'They\'ll come back.',
     ],

@@ -17,10 +17,10 @@ const SOLID = [1, 3, 4, 7, 9, 10];
 const TILE_DIALOG = {
   1: ['(Full reservoir. So much water, nowhere to go. I relate.)'],
   3: ['(Dutch elm. Straight, reliable, boring. Very Dutch. (I\'m allowed to say that, I\'m Nordic.))'],
-  5: ['(Tulips. She pressed one in her diary. I\'m not supposed to know that.)'],
-  7: ['(Canal house. Someone\'s having breakfast in there. I\'m jealous.)'],
-  9: ['(Old windmill. Waiting for water to flow. Me and this windmill have a lot in common.)'],
-  10: ['(Wooden fence. Simple, sturdy. Keeping me out. Rude but fair.)'],
+  5: ['(Tulips. She said she\'d get me flowers some day too.)'],
+  7: ['(Canal house. Someone\'s having breakfast in there. Maybe it\'s a Ricky recipe.)'],
+  9: ['(Old windmill. Waiting for things to happen. Me and this windmill have a lot in common.)'],
+  10: ['(Wooden fence. Keeping me out. Rude.)'],
 };
 
 function spriteOf(key) {

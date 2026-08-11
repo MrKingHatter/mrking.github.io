@@ -13,28 +13,26 @@ import { HintSystem } from '../data/hints.js';
 
 const TILE_DIALOG = {
   1: [
-    '(Wide river. Fast current. Absolutely not swimming. Piranhas exist.)',
+    '(Wide river. Fast current. Absolutely not swimming. Stefy is waiting for me.)',
     '(Dark water. Something moved. Nope. Nope nope nope.)',
-    '(She\'d want to swim. I\'d be on piranha watch. Division of labor.)',
+    '(If she\'d want to swim, I\'d be on piranha watch. Division of labor.)',
   ],
   3: [
-    '(Massive tree. Blocks out the sky. I feel very small.)',
-    '(Vines on everything. The jungle just... takes stuff.)',
-    '(Something rustled. Could be a bird. Could be my anxiety.)',
+    '(Massive tree. Blocks out the sky. I feel very small. This must be how Stefy feels every day.)',
+    '(Vines on everything. Looks almost like pretty hair.)',
   ],
   5: [
-    '(Tropical flowers. Bright red. Beautiful. Probably poisonous. Classic.)',
+    '(Tropical flowers. Bright red. Beautiful. Maybe poisonous. A bit like Stefy.)',
     '(She\'d pick one. I\'d Google if it\'s toxic. Teamwork.)',
   ],
   8: [
-    '(Rope bridge. Swaying. Holding. Barely. Very Indiana Jones.)',
+    '(Rope bridge. Very Indiana Jones. Another movie I we could watch.)',
   ],
   9: [
-    '(Mossy boulder. Slick. My shoes are already a disaster.)',
+    '(Mossy boulder. Disgusting. Like Emma.)',
   ],
   10: [
-    '(Impenetrable undergrowth. Machete territory. I have no machete.)',
-    '(Too dense. Going around. My arms are scratched enough.)',
+    '(Impenetrable undergrowth. Machete territory ... I have no machete.)',
   ],
 };
 

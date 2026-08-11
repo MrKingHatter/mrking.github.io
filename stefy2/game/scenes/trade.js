@@ -12,23 +12,21 @@ import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_DIALOG = {
   4: [
-    '(Rammed earth walls. Cool in the shade. I could nap here. Focus.)',
-    '(Medina walls. Thick, ancient, labyrinthine. I am lost. Again.)',
+    '(Rammed earth walls. Cool in the shade. We could nap here ... Focus.)',
+    '(Medina walls. Thick, ancient, labyrinthine. I am lost. Again. Always lost without Stefy.)',
   ],
   5: [
-    '(Bougainvillea climbing everything. Aggressively pink. She\'d gasp.)',
-    '(Potted flowers everywhere. This alley has more plants than our apartment.)',
+    '(Bougainvillea climbing everything. Aggressively pink. Would she\'d love this?)',
+    '(Potted flowers everywhere. I would buy her every single one.)',
   ],
   6: [
-    '(Sand between the tiles. In my shoes. In my soul.)',
     '(Dusty. Dry. Hot. I love travel. (I am dying.))',
   ],
   7: [
-    '(Riad entrance. The tilework is insane. She\'d take 400 photos.)',
-    '(Carved wood, colored glass. I want to live here. Can I live here?)',
+    '(Riad entrance. The tilework is insane. I would tell her all the fun facts I know.)',
+    '(Carved wood, colored glass. I want to live here. Can I live here? Not without Stefy.)',
   ],
   11: [
-    '(Heavy door. Locked. Brass knocker shaped like a hand. Not knocking.)',
     '(Door says no. I respect that.)',
   ],
 };

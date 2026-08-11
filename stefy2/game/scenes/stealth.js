@@ -17,29 +17,25 @@ const NOISY_TILES = new Set([0, 5, 10]); // grass, flowers, bush
 
 const TILE_DIALOG = {
   0: [
-    '(Soft grass. My shoes are getting wet. Worth it though.)',
-    '(The lawn is impossibly green. Even at midnight. Show off.)',
-    '(Good grass for a picnic. Not that I\'m planning one. Shut up.)',
+    '(!grass)',
+    '(Good grass for a picnic. Not that I\'m planning one...?)',
   ],
   1: [
-    '(Dark water. Can\'t cross. Very atmospheric though.)',
+    '(Dark water. Dark like Stefy\'s hair.)',
     '(She\'d say this looks like \"liquid silver.\" She says stuff like that.)',
-    '(Too deep. The koi are sleeping anyway. Lucky them.)',
+    '(The koi are sleeping together. Maybe we should too.)',
   ],
   3: [
-    '(Old maple. Can\'t push through. The trunk is wider than me.)',
-    '(She would name this tree. She names everything. Even my plant.)',
-    '(Bark is warm. Trees hold heat apparently. I learned that from her. Of course.)',
+    '(She would name this tree. She names everything. Even her plants.)',
   ],
   4: [
-    '(Garden wall. Mossy. No way through. Very \"secret garden\" energy.)',
-    '(Cold stone. Someone built this ages ago. Probably also at night.)',
-    '(What\'s on the other side? Probably more garden. Probably more foxes.)',
+    '(Garden wall. Mossy. Reminds me of Stardew with Stefy.)',
+    '(Cold stone. She pretends to be cold and mean sometimes. I know that she\'s not.)',
+    '(What\'s on the other side? Not Stefy. No need to go there.)',
   ],
   5: [
-    '(Night-blooming flowers. The scent is aggressive. In a good way.)',
-    '(These would be perfect for her. If I could carry them AND sneak.)',
-    '(She\'d photograph these. Then make me hold the phone flashlight.)',
+    '(These would be perfect for her. If only I could carry them AND sneak.)',
+    '(She\'d probably photograph these. Then make me hold the phone flashlight.)',
   ],
   7: [
     '(Tea house. Closed. At midnight. Shocking.)',
@@ -47,11 +43,10 @@ const TILE_DIALOG = {
   ],
   9: [
     '(Decorative rock. Too heavy. Too large. Very zen. Very in my way.)',
-    '(She\'d sit on this and read. I\'d sit next to her and pretend to read.)',
+    '(She\'d sit on this and study her French. I\'d sit next to her and pretend to read.)',
   ],
   10: [
-    '(Dense hedge. Could hide here. Smells like bugs though.)',
-    '(The leaves rustle. Either wind or something alive. Moving on.)',
+    '(The leaves rustle. Either wind or something alive. Stefy is waiting.)',
   ],
 };
 

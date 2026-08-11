@@ -12,31 +12,29 @@ import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_DIALOG = {
   1: [
-    '(Stream! She\'d dip her toes in. I\'d watch from a safe dry distance.)',
-    '(Clear water. Can\'t cross. My shoes say no.)',
+    '(Stream! Maybe she\'d dip her toes in. I\'d watch from a safe dry distance.)',
+    '(Clear water. Can\'t cross. Only one of should get wet.)',
   ],
   3: [
-    '(Old oak. Covered in moss. Absolutely not moving for me.)',
-    '(Cicadas screaming in the branches. Very relaxing. Very loud.)',
+    '(Old oak. Like in Pocahontas. Maybe she\'d watch that movie with me.)',
+    '(Cicadas screaming in the branches. Very relaxing. I prefer Stefy\'s voice though.)',
   ],
   5: [
-    '(Lavender. My nose is having a breakdown. A good breakdown.)',
+    '(Lavender. Stefy would look good in lavender.)',
     '(She\'d fill the apartment with this stuff. I\'d sneeze for weeks. Worth it.)',
-    '(Purple as far as I can see. Instagram would lose its mind.)',
   ],
   7: [
-    '(Stone farmhouse. Blue shutters. Fresh bread smell. I\'m STARVING.)',
-    '(Someone\'s home. Someone\'s eating. I\'m standing in a field. Great.)',
+    '(Stone farmhouse. Blue shutters. Fresh bread smell. Stefy probably has a really good recipe for bread.)',
+    '(Someone\'s home. Someone\'s eating. I\'m standing in a field. All alone. Great.)',
   ],
   8: [
-    '(Wooden footbridge. Holds my weight. Barely.)',
+    '(Wooden footbridge. Holds my weight. I wish Stefy was here.)',
   ],
   9: [
-    '(Warm limestone. Good sitting rock. Focus, Mikkel.)',
     '(Flat rock. Perfect for a picnic. NOT why I\'m here.)',
   ],
   10: [
-    '(Thick hedge. No way through. Birds inside mocking me.)',
+    '(Big boxes. No need to look inside, there\'s nothing I can give Stefy. I\'ll buy her anything she needs.)',
   ],
 };
 

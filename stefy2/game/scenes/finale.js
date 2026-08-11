@@ -12,37 +12,34 @@ import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_DIALOG = {
   1: [
-    '(Canal at sunset. Golden. She\'d try to skip a stone. It\'d go once.)',
+    '(Canal at sunset. Does Stefy know how to skip stones? Maybe she could teach me.)',
     '(Still water. Very romantic. I\'m not thinking about that. (I am.))',
   ],
   3: [
     '(Olive tree. Twisted, patient, older than my problems.)',
-    '(Gnarled trunk. This tree has SEEN things. Probably unimpressed by me.)',
+    '(This tree has SEEN things. Probably unimpressed by me. Just like Stefy.)',
   ],
   4: [
-    '(Stone wall. Warm from the sun. I could nap here. NO. FOCUS.)',
-    '(Ancient brickwork. This village has centuries on me and it shows.)',
+    '(Stone wall. Warm from the sun. We could nap here. NO. FOCUS.)',
   ],
   5: [
-    '(Sunflowers taller than me. HER favorites. Almost there.)',
-    '(Wildflowers everywhere. Italy is showing off.)',
-    '(She\'d stop to smell every single one. I\'d pretend to be patient.)',
+    '(Sunflowers are almost taller than me.)',
+    '(Wildflowers everywhere. Italy is showing off. I wish I knew the language.)',
+    '(Is that a UFO in the sky? No, it\'s just my pizza.)',
   ],
   7: [
-    '(Village house. Terracotta roof. Fresh pasta smell. I\'m SUFFERING.)',
-    '(Green shutters. Warm light. Someone is living my dream life in there.)',
+    '(Village house. Terracotta roof. Fresh pasta smell. I miss Stefy.)',
+    '(Green shutters. Warm light. Italian country side. Someone is living my dream life in there.)',
   ],
   9: [
-    '(Stone bench. Good for sitting. Bad for quitting. Keep moving.)',
-    '(Cobblestones. Smooth from a thousand footsteps. Mine included now.)',
+    '(Stone bench. Good for sitting. We should go here.)',
   ],
   10: [
-    '(Vineyard hedge. No shortcut. Grapes not even ripe yet. Useless.)',
-    '(Dense growth. Full of grapes. Taunting me.)',
+    '(Vineyard sticks. Does Stefy like wine?)',
+    '(Dense growth. Full of grapes. Taunting me... I love grapes.)',
   ],
   11: [
-    '(Cellar door. Barred shut. Probably has excellent wine. Not for me.)',
-    '(Heavy door. Says no. I keep walking.)',
+    '(Heavy door. Says no. I keep walking. I respect a no.)',
   ],
 };
 

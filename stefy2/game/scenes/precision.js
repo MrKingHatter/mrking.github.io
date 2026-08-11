@@ -12,21 +12,17 @@ import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_DIALOG = {
   1: [
-    '(Waves far below. Don\'t look down. I looked down. Mistake.)',
-    '(Grey sea. Churning. Beautiful from up here. Terrifying also from up here.)',
-    '(Salt spray. Focus, Mikkel. One foot. Then the other. Revolutionary technique.)',
+    '(Waves far below. Don\'t look down. I looked down. Mistake...)',
+    '(Focus, Mikkel. Focus on Stefy.)',
   ],
   5: [
-    '(Wildflowers on the cliff edge. Braver than me.)',
     '(Yellow blooms on chalk. Stubborn little things. Remind me of someone.)',
   ],
   6: [
-    '(Loose gravel. Every step matters. No pressure.)',
     '(Path crumbles at the edges. GREAT. LOVE THAT.)',
   ],
   9: [
-    '(Chalk boulder. Wind-worn. At least it\'s not moving. Unlike everything else.)',
-    '(Solid rock. The one stable thing on this entire cliff. My best friend.)',
+    '(Solid rock. The one stable thing on this entire cliff. Like our relationship could be.)',
   ],
 };
 
