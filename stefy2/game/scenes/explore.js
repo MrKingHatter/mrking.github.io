@@ -259,6 +259,7 @@ export class ExploreScene extends Scene {
     this._pCol = destCol; this._pRow = destRow;
     this._moving = true;
     sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
     this._revealAround(destCol, destRow);
   }
 
@@ -314,6 +315,7 @@ export class ExploreScene extends Scene {
   _checkGoal(dialog) {
     if (this._pCol === LEVELS_L4.goal.col && this._pRow === LEVELS_L4.goal.row) {
       this.goalReached = true;
+      this.world?.globals?.audio?.playPickup();
       const mem = LEVELS_L4.memoryItem;
       dialog.show([
         { speaker: '', text: `✦ Memory restored: ${mem.name}` },
@@ -325,6 +327,7 @@ export class ExploreScene extends Scene {
   _onLevelComplete() {
     const memEl = document.getElementById('memories-collected');
     memEl.textContent = (parseInt(memEl.textContent) || 0) + 1;
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => this.manager.switchTo('vignette', { levelIdx: 3 }), 600);
   }
 

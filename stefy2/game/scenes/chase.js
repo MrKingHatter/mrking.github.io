@@ -166,6 +166,7 @@ export class ChaseScene extends Scene {
   _foundWisp(wisp, dialog) {
     wisp.found = true;
     this._foundCount++;
+    this.world?.globals?.audio?.playPickup();
     const memLine = LEVELS_L3.memoryLines[this._currentWisp];
     const isLast = this._foundCount >= this._wisps.length;
 
@@ -280,6 +281,7 @@ export class ChaseScene extends Scene {
     this._pCol = destCol; this._pRow = destRow;
     this._moving = true;
     sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
   }
 
   _interpolateMovement(dt) {
@@ -339,6 +341,7 @@ export class ChaseScene extends Scene {
     const memEl = document.getElementById('memories-collected');
     const current = parseInt(memEl.textContent) || 0;
     memEl.textContent = current + 1;
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => {
       this.manager.switchTo('vignette', { levelIdx: 2 });
     }, 600);

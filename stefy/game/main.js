@@ -11,6 +11,7 @@ import {
 
 import { PALETTE } from './data/palette.js';
 import { SPR_PLAYER, SPR_GIRL, SPR_NPC, SPR_NPC_ROBED, SPR_ANIMAL_SMALL, SPR_ANIMAL_LARGE, SPR_ANIMAL_BIRD, SPR_FLOWER, FLOWER_SPRITES, NPC_STYLES, FLOWER_COLORS } from './data/sprites.js';
+import { TRACKS } from './data/music.js';
 import { TitleScene } from './scenes/title.js';
 import { LevelScene } from './scenes/level.js';
 import { EndingScene } from './scenes/ending.js';
@@ -209,6 +210,7 @@ function boot() {
   const physics = new GridPhysics();
   const dialog = new DialogSystem({ typeSpeed: 35 });
   const audio = new AudioSystem();
+  audio.registerTracks(TRACKS);
   const scenes = new SceneManager();
 
   world.addSystem(input);

@@ -8,7 +8,7 @@ const PAGES = [
   {
     bg: '#0a0a1a',
     lines: [
-      'Six months after that night in the park...',
+      'One month after that night in the park...',
       'The bouquet sits on Stefy\'s windowsill. Still in water.',
       'She sent him a photo. "Look, still alive! I am good plant mother, no?"',
     ],
@@ -106,6 +106,7 @@ export class PrologueScene extends Scene {
         this._charIdx = 0;
         if (this._pageIdx >= PAGES.length) {
           this._done = true;
+          this.world?.globals?.audio?.playTransition();
           this.manager.switchTo('stealth', { levelIdx: 0 });
           return;
         }

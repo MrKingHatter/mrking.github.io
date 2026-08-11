@@ -156,11 +156,21 @@ export class DialogSystem extends System {
       this._timer += dt;
       const charsToAdd = Math.floor(this._timer * this._typeSpeed);
       if (charsToAdd > 0) {
+        const prev = this._typedCount;
         this._typedCount = Math.min(
           this._typedCount + charsToAdd,
           this._currentLine.text.length
         );
         this._textEl.textContent = this._currentLine.text.slice(0, this._typedCount);
+        this._timer = 0;
+
+        // Blip on every 3rd visible character
+        if (this._typedCount > prev && this.world?.globals?.audio) {
+          if (this._typedCount % 3 === 0) {
+            const ch = this._currentLine.text[this._typedCount - 1];
+            if (ch && ch !== ' ') this.world.globals.audio.playBlip();
+          }
+        }
         this._timer = 0;
 
         if (this._typedCount >= this._currentLine.text.length) {

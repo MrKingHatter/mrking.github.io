@@ -46,6 +46,7 @@ export class LevelSelectScene extends Scene {
     if (input.isPressed('Space') || input.isPressed('Enter')) {
       const lvl = LEVELS_META[this._selected];
       if (lvl.id) {
+        this.world?.globals?.audio?.playTransition();
         this.manager.switchTo(lvl.id, { levelIdx: lvl.idx });
       }
     }

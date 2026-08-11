@@ -436,6 +436,7 @@ export class FinaleScene extends Scene {
 
     this._pCol = destCol; this._pRow = destRow;
     this._moving = true; sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
 
     // Phase 3 reveal
     if (this._phase === 3) this._revealAround(destCol, destRow);
@@ -514,6 +515,7 @@ export class FinaleScene extends Scene {
         const dist = Math.abs(this._pCol - orb.col) + Math.abs(this._pRow - orb.row);
         if (dist <= 2) {
           this._orbsCollected.push(i);
+          this.world?.globals?.audio?.playPickup();
           if (this._orbsCollected.length < orbs.length) {
             dialog.show([{ speaker: 'Mikkel', text: `(Memory orb ${this._orbsCollected.length}/${orbs.length} collected.)` }]);
           } else {
@@ -604,6 +606,7 @@ export class FinaleScene extends Scene {
     const level = LEVELS_L7;
     if (this._pCol === level.goal.col && this._pRow === level.goal.row) {
       this.goalReached = true;
+      this.world?.globals?.audio?.playPickup();
       const mem = level.memoryItem;
       dialog.show([
         { speaker: '', text: `✦ Memory restored: ${mem.name}` },
@@ -617,6 +620,7 @@ export class FinaleScene extends Scene {
   _onLevelComplete() {
     const memEl = document.getElementById('memories-collected');
     memEl.textContent = '7';
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => this.manager.switchTo('vignette', { levelIdx: 6 }), 600);
   }
 

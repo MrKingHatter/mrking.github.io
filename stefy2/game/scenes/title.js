@@ -27,6 +27,7 @@ export class TitleScene extends Scene {
     window.removeEventListener('keydown', this._handler);
     document.getElementById('title-screen').removeEventListener('click', this._handler);
     document.getElementById('title-screen').style.display = 'none';
+    this.world?.globals?.audio?.playTransition();
     this.manager.switchTo('prologue');
   }
 
@@ -34,6 +35,7 @@ export class TitleScene extends Scene {
     window.removeEventListener('keydown', this._handler);
     document.getElementById('title-screen').removeEventListener('click', this._handler);
     document.getElementById('title-screen').style.display = 'none';
+    this.world?.globals?.audio?.playTransition();
     this.manager.switchTo('levelselect', { debug: true });
   }
 

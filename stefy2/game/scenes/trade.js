@@ -219,6 +219,7 @@ export class TradeScene extends Scene {
 
     this._pCol = destCol; this._pRow = destRow;
     this._moving = true; sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
   }
 
   _interpolateMovement(dt) {
@@ -297,6 +298,7 @@ export class TradeScene extends Scene {
     this._inventory.splice(wantIdx, 1);
     if (trader.gives) this._inventory.push(trader.gives);
     this._tradedWith.add(npcId);
+    this.world?.globals?.audio?.playPickup();
     dialog.show(trader.giveDialog);
     this._checkTradeChainComplete(dialog);
   }
@@ -319,6 +321,7 @@ export class TradeScene extends Scene {
   _checkGoal(dialog) {
     if (this._pCol === LEVELS_L5.goal.col && this._pRow === LEVELS_L5.goal.row) {
       this.goalReached = true;
+      this.world?.globals?.audio?.playPickup();
       const mem = LEVELS_L5.memoryItem;
       dialog.show([
         { speaker: '', text: `✦ Memory restored: ${mem.name}` },
@@ -330,6 +333,7 @@ export class TradeScene extends Scene {
   _onLevelComplete() {
     const memEl = document.getElementById('memories-collected');
     memEl.textContent = (parseInt(memEl.textContent) || 0) + 1;
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => this.manager.switchTo('vignette', { levelIdx: 4 }), 600);
   }
 

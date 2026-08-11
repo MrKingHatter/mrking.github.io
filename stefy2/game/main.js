@@ -6,6 +6,7 @@ import {
   RendererSystem, InputSystem, CameraFollowSystem,
   TileMapRenderer, GridPhysics, DialogSystem, AudioSystem, StealthSystem,
 } from '../../engine/index.js';
+import { TRACKS } from './data/music.js';
 import { TitleScene } from './scenes/title.js';
 import { PrologueScene } from './scenes/prologue.js';
 import { LevelSelectScene } from './scenes/levelselect.js';
@@ -208,6 +209,7 @@ const physics = new GridPhysics();
 const stealth = new StealthSystem();
 const dialog = new DialogSystem({ typeSpeed: 35 });
 const audio = new AudioSystem();
+audio.registerTracks(TRACKS);
 const scenes = new SceneManager();
 
 world.addSystem(input);

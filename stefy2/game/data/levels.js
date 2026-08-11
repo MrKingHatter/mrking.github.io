@@ -184,13 +184,13 @@ const L3_WISP_LOCATIONS = [
 ];
 
 const L3_MEMORY_LINES = [
-  'Lavender. That\'s what it was.',
-  'She was running ahead through the field, arms out.',
-  'He tried to keep up but couldn\'t stop laughing.',
-  'She tripped on nothing. He caught her. Barely.',
-  'For three seconds they were close enough to share a breath.',
-  '"You\'re slow," she said. "You\'re fast," he said.',
-  'Neither of them moved for a while after that.',
+  'Outside Valensole. Her idea. Obviously.',
+  '"First to that tree." She bolted. Three-second head start.',
+  'He caught up. She grabbed his shirt. "Adapt."',
+  'She tripped at the finish. He caught her.',
+  'Lavender and bad decisions. That\'s what she smelled like.',
+  'Stayed in his arms too long. "The altitude."',
+  'Provence is flat.',
 ];
 
 const L3_NPCS = [

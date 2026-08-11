@@ -192,6 +192,7 @@ export class PuzzleScene extends Scene {
       const goalKey = `${LEVELS_L2.goal.col},${LEVELS_L2.goal.row}`;
       if (this._targetWet.has(goalKey) && (this._tileAlpha.get(goalKey) || 0) >= 1 && !this._hasLeak) {
         this.goalReached = true;
+        this.world?.globals?.audio?.playPickup();
         const dialog = this.world.globals.dialog;
         const mem = LEVELS_L2.memoryItem;
         dialog.show([
@@ -303,6 +304,7 @@ export class PuzzleScene extends Scene {
     this._pCol = destCol; this._pRow = destRow;
     this._moving = true;
     sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
   }
 
   _interpolateMovement(dt) {
@@ -331,6 +333,7 @@ export class PuzzleScene extends Scene {
     const gate = this._gates.find(g => g.col === fc && g.row === fr);
     if (gate) {
       gate.open = !gate.open;
+      this.world?.globals?.audio?.playTone(gate.open ? 600 : 400, 0.1, 'square', 0.3);
       this._calcWaterFlow(gate.open ? gate : null);
       if (!this.selfTalkTriggered['first_gate']) {
         this.selfTalkTriggered['first_gate'] = true;
@@ -351,6 +354,7 @@ export class PuzzleScene extends Scene {
     const gateOn = this._gates.find(g => g.col === this._pCol && g.row === this._pRow);
     if (gateOn) {
       gateOn.open = !gateOn.open;
+      this.world?.globals?.audio?.playTone(gateOn.open ? 600 : 400, 0.1, 'square', 0.3);
       this._calcWaterFlow(gateOn.open ? gateOn : null);
       return;
     }
@@ -497,6 +501,7 @@ export class PuzzleScene extends Scene {
     const memEl = document.getElementById('memories-collected');
     const current = parseInt(memEl.textContent) || 0;
     memEl.textContent = current + 1;
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => {
       this.manager.switchTo('vignette', { levelIdx: 1 });
     }, 600);

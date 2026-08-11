@@ -46,6 +46,8 @@ export class StealthSystem extends System {
       const pos = guard.get('Position');
       if (sg.paused) continue;
 
+      const tileSpeed = sg.speed * tileSize; // px/s
+
       // Freeze in place when spotting player (even during grace period)
       if (sg.alertState >= 1) {
         // Still interpolate to grid snap if mid-step, but don't start new moves
@@ -66,8 +68,6 @@ export class StealthSystem extends System {
         }
         continue;
       }
-
-      const tileSpeed = sg.speed * tileSize; // px/s
 
       // Interpolate toward grid target
       if (sg.moving) {

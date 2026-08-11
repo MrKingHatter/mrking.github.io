@@ -181,6 +181,7 @@ export class StealthScene extends Scene {
         if (!this.detected) {
           this.detected = true;
           this.respawnTimer = 1.5;
+          this.world?.globals?.audio?.playTone(200, 0.3, 'sawtooth', 0.4);
           this._showSelfTalk('caught');
         }
       });
@@ -336,6 +337,7 @@ export class StealthScene extends Scene {
     this._pRow = destRow;
     this._moving = true;
     sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
 
     // Noise check
     if (NOISY_TILES.has(tile)) this._makeNoise(destCol, destRow, 2);
@@ -436,6 +438,7 @@ export class StealthScene extends Scene {
 
     if (pCol === level.goal.col && pRow === level.goal.row) {
       this.goalReached = true;
+      this.world?.globals?.audio?.playPickup();
       const mem = level.memoryItem;
       dialog.show([
         { speaker: '', text: `✦ Memory collected: ${mem.name}` },
@@ -480,6 +483,7 @@ export class StealthScene extends Scene {
     const memEl = document.getElementById('memories-collected');
     const current = parseInt(memEl.textContent) || 0;
     memEl.textContent = current + 1;
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => {
       this.manager.switchTo('vignette', { levelIdx: this.levelIdx });
     }, 600);

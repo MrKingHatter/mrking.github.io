@@ -212,6 +212,7 @@ export class PrecisionScene extends Scene {
       this._moving = true;
       this._falling = true;
       this._fallTimer = 0.8;
+      this.world?.globals?.audio?.playTone(150, 0.4, 'sawtooth', 0.3);
       if (!this.selfTalkTriggered['fall']) {
         this.selfTalkTriggered['fall'] = true;
         const dialog = this.world.globals.dialog;
@@ -236,6 +237,7 @@ export class PrecisionScene extends Scene {
     this._pCol = destCol; this._pRow = destRow;
     this._moving = true;
     sprite.bobAmount = 2;
+    this.world?.globals?.audio?.playStep();
     this._stepCount++;
 
     // Checkpoints
@@ -313,6 +315,7 @@ export class PrecisionScene extends Scene {
   _checkGoal(dialog) {
     if (this._pCol === LEVELS_L6.goal.col && this._pRow === LEVELS_L6.goal.row) {
       this.goalReached = true;
+      this.world?.globals?.audio?.playPickup();
       const mem = LEVELS_L6.memoryItem;
       dialog.show([
         { speaker: '', text: `✦ Memory restored: ${mem.name}` },
@@ -324,6 +327,7 @@ export class PrecisionScene extends Scene {
   _onLevelComplete() {
     const memEl = document.getElementById('memories-collected');
     memEl.textContent = (parseInt(memEl.textContent) || 0) + 1;
+    this.world?.globals?.audio?.playTransition();
     setTimeout(() => this.manager.switchTo('vignette', { levelIdx: 5 }), 600);
   }
 
