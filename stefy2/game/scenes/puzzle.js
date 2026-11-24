@@ -8,6 +8,7 @@ import {
   TileMap, GridCollider, DialogData,
 } from '../../../engine/index.js';
 import { LEVELS_L2 } from '../data/levels.js';
+import { drawFlower } from '../data/flowers.js';
 import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_SIZE = 32;
@@ -263,13 +264,11 @@ export class PuzzleScene extends Scene {
     if (!this.goalReached) {
       const gx = LEVELS_L2.goal.col * TILE_SIZE - cam.x + TILE_SIZE / 2;
       const gy = LEVELS_L2.goal.row * TILE_SIZE - cam.y + TILE_SIZE / 2;
-      const pulse = 0.4 + Math.sin(Date.now() / 500) * 0.3;
+      const pulse = 0.6 + Math.sin(Date.now() / 500) * 0.3;
+      const bob = Math.sin(Date.now() / 600) * 3;
       ctx.save();
       ctx.globalAlpha = pulse;
-      ctx.fillStyle = '#ffd700';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('✿', gx, gy);
+      drawFlower(ctx, 1, gx, gy + bob, 1.5);
       ctx.restore();
     }
   }

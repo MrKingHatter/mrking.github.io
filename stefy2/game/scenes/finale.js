@@ -8,6 +8,7 @@ import {
   TileMap, GridCollider, DialogData,
 } from '../../../engine/index.js';
 import { LEVELS_L7 } from '../data/levels.js';
+import { drawFlower } from '../data/flowers.js';
 import { SPRITE_REGIONS, TILE_REGIONS_DAY } from '../main.js';
 
 const TILE_DIALOG = {
@@ -281,12 +282,10 @@ export class FinaleScene extends Scene {
     if (!this.goalReached) {
       const gx = level.goal.col * TILE_SIZE - cam.x + TILE_SIZE / 2;
       const gy = level.goal.row * TILE_SIZE - cam.y + TILE_SIZE / 2;
-      const pulse = 0.3 + Math.sin(Date.now() / 350) * 0.3;
+      const pulse = 0.5 + Math.sin(Date.now() / 350) * 0.3;
+      const bob = Math.sin(Date.now() / 600) * 3;
       ctx.save(); ctx.globalAlpha = pulse;
-      ctx.fillStyle = '#ffd700';
-      ctx.font = 'bold 20px sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('✿', gx, gy);
+      drawFlower(ctx, 6, gx, gy + bob, 2);
       ctx.restore();
     }
 
@@ -606,10 +605,10 @@ export class FinaleScene extends Scene {
       this.world?.globals?.audio?.playPickup();
       const mem = level.memoryItem;
       dialog.show([
-        { speaker: '', text: `✦ Memory restored: ${mem.name}` },
+        { speaker: '', text: `✦ Collected: ${mem.name}` },
         { speaker: '', text: `"${mem.flavor}"` },
-        { speaker: '', text: 'All seven flowers bloom together.' },
-        { speaker: '', text: 'The garden is whole again.' },
+        { speaker: '', text: 'All seven flowers. The bouquet is complete.' },
+        { speaker: '', text: 'Time to go home.' },
       ], () => this._onLevelComplete());
     }
   }

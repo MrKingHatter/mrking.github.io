@@ -72,7 +72,7 @@ const VIGNETTES = [
       '',
       'Gate said "Privado." She read it. Walked straight in.',
       'He stood there. "Stefy." "Coming?"',
-      'What was he going to do, he can\' say no to pretty hair. He went in.',
+      'What was he going to do, he can\'t say no to pretty hair. He went in.',
       '',
       'Orchids bigger than his hand. She forgot to breathe.',
       'Then photographed him looking at her looking at orchids.',
@@ -94,7 +94,7 @@ const VIGNETTES = [
       'Mascarpone. Nocciola. Vaniglia.',
       '',
       '"You\'re staring." "I\'m studying Italian."',
-      '"You don\'t speak Italian." "I\'m studying 𝒶𝓃 Italian."',
+      '"You don\'t speak Italian." "I\'m studying AN Italian."',
       'He moved his chair closer. "Better view of the stars."',
       'The stars were behind them. He knew that.',
     ],
@@ -183,7 +183,7 @@ export class VignetteScene extends Scene {
         if (nextIdx < LEVEL_ORDER.length) {
           this.manager.switchTo(LEVEL_ORDER[nextIdx], { levelIdx: nextIdx });
         } else {
-          this.manager.switchTo('title');
+          this.manager.switchTo('epilogue');
         }
       }
       return;

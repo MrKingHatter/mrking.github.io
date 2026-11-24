@@ -8,7 +8,7 @@ const PAGES = [
   {
     bg: '#0a0a1a',
     lines: [
-      'One month after that night in the park...',
+      'Many months after that night in the park...',
       'The bouquet sits on Stefy\'s windowsill. Still in water.',
       'She sent him a photo. "Look! Still alive! I am good plant mother, no?"',
     ],
@@ -40,16 +40,16 @@ const PAGES = [
     bg: '#0a0a1a',
     lines: [
       '"Flowers given with heart don\'t have to die.',
-      'But they need tending. Same as the moments they hold.',
-      'Go back. Remember why each one mattered. They\'ll bloom again."',
+      'But if they do, you go back. You find new ones.',
+      'You remember why each one mattered. And you bring them home."',
     ],
   },
   {
     bg: '#0d0d20',
     lines: [
       'Seven flowers. Seven cities. Seven memories.',
-      'If he can remember why... really remember...',
-      'They\'ll come back.',
+      'New flowers. Same cities. Same reasons.',
+      'Time to go back.',
     ],
   },
   {

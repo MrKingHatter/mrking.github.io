@@ -66,44 +66,44 @@ const L1_CHECKPOINTS = [
 const L1_NPCS = [
   { id: 'night_cat', col: 8, row: 8, sprite: 'cat', dialog: [
     { speaker: 'Night Cat', text: '*judges silently*' },
-    { speaker: 'Mikkel', text: '(The cat knows I\'m sneaking around at midnight. Very judgmental energy.)' },
+    { speaker: 'Mikkel', text: '(Stefy would love this cat. Or maybe the cat would love Stefy. Hard to tell who\'d adopt who.)' },
   ]},
   { id: 'gardener', col: 9, row: 13, sprite: 'gardener', dialog: [
     { speaker: 'Sleeping Gardener', text: '...zzz... foxes turn before they move... zzz...' },
-    { speaker: 'Mikkel', text: '(Even unconscious people are more helpful than me at directions.)' },
+    { speaker: 'Mikkel', text: '(This guy is more useful asleep than Emma is awake. Sorry Emma.)' },
   ]},
   { id: 'tanuki', col: 38, row: 14, sprite: 'tanuki', dialog: [
     { speaker: 'Tanuki Statue', text: '...' },
-    { speaker: 'Mikkel', text: '(Did that statue just blink? I\'m losing it.)' },
+    { speaker: 'Mikkel', text: '(Did that statue just blink? Stefy would talk to it. I\'m considering it.)' },
     { speaker: 'Tanuki Statue', text: 'East. The last fox looks east first. You\'re welcome.' },
   ]},
   { id: 'firefly', col: 25, row: 19, sprite: 'firefly', dialog: [
     { speaker: 'Firefly Swarm', text: '*blinks in unison*' },
-    { speaker: 'Mikkel', text: '(She\'d try to catch one. Then apologize to it. Then name it.)' },
+    { speaker: 'Mikkel', text: '(Would Stefy try to catch one? Probably. Would she name it? Definitely.)' },
   ]},
 ];
 
 const L1_ENV_INTERACTIONS = [
-  { col: 20, row: 14, id: 'pond', text: '(Moon in the pond. Very aesthetic. She\'d make me take twelve photos.)' },
-  { col: 46, row: 3, id: 'cherry_tree', text: '(Cherry blossoms. Pink like the emoji she spams me with.)' },
-  { col: 6, row: 3, id: 'bamboo', text: '(Bamboo rustling. Sounds like her whispering vocab to herself on camera.)' },
-  { col: 38, row: 2, id: 'stone_lantern', text: '(Stone lantern, still warm. Spooky. Cool. Spoopy.)' },
-  { col: 14, row: 20, id: 'flower_bush', text: '(Night jasmine. Aggressively fragrant. Like her cooking. Don\'t tell her I said that.)' },
-  { col: 30, row: 14, id: 'koi_shadow', text: '(Koi fish. Swimming in circles. I relate, honestly.)' },
-  { col: 44, row: 26, id: 'old_bench', text: '(Bench. Someone definitely had a dramatic anime moment here.)' },
-  { col: 10, row: 25, id: 'moss_rock', text: '(Very soft moss. Would rate 8/10 for napping. Focus, Mikkel.)' },
-  { col: 28, row: 8, id: 'prayer_flags', text: '(Prayer strips. Should I write one? "Please let me not say something dumb." Too late for that.)' },
-  { col: 48, row: 15, id: 'garden_gate', text: '(A gate to nowhere. Very on-brand for my love life. Wait, what?)' },
-  { col: 35, row: 20, id: 'wind_chime', text: '(I can hear it! The chime! Almost there, Mikkel, don\'t trip.)' },
-  { col: 15, row: 5, id: 'stepping_stones', text: '(Stepping stones. She\'d hop across these and I\'d pretend not to be impressed.)' },
+  { col: 20, row: 14, id: 'pond', text: '(Moon in the pond. Stefy would make me photograph this. Twelve angles minimum.)' },
+  { col: 46, row: 3, id: 'cherry_tree', text: '(Cherry blossoms. Pink like every emoji Stefy has ever sent me.)' },
+  { col: 6, row: 3, id: 'bamboo', text: '(Bamboo rustling. Reminds me of Stefy whispering Italian vocab on call.)' },
+  { col: 38, row: 2, id: 'stone_lantern', text: '(Stone lantern, still warm. Spooky. I bet Stefy would touch it. I\'m not touching it.)' },
+  { col: 14, row: 20, id: 'flower_bush', text: '(Night jasmine. Smells intense. Like Stefy\'s cooking... don\'t tell her I said that.)' },
+  { col: 30, row: 14, id: 'koi_shadow', text: '(Koi fish. Swimming in circles. Like me trying to think of what to text Stefy.)' },
+  { col: 44, row: 26, id: 'old_bench', text: '(Bench. We could sit here. Would she want to sit here? Focus, Mikkel.)' },
+  { col: 10, row: 25, id: 'moss_rock', text: '(Very soft moss. Good napping spot. Emma would ruin it by talking. As usual.)' },
+  { col: 28, row: 8, id: 'prayer_flags', text: '(Prayer strips. I\'d write "don\'t say something dumb to Stefy." Too late for that.)' },
+  { col: 48, row: 15, id: 'garden_gate', text: '(A gate to nowhere. Does Stefy ever feel like this? Probably not. She goes everywhere.)' },
+  { col: 35, row: 20, id: 'wind_chime', text: '(I can hear it! The chime! Almost there. Stefy is waiting.)' },
+  { col: 15, row: 5, id: 'stepping_stones', text: '(Stepping stones. I bet Stefy could hop these without looking. I can\'t.)' },
 ];
 
 const L1_SELF_TALK = [
-  { trigger: 'start', text: '(OK. Midnight garden. Don\'t get caught by foxes. Normal Tuesday.)' },
-  { trigger: 'first_seen', text: '(They freeze when they spot me. I freeze too. We have so much in common.)' },
-  { trigger: 'checkpoint1', text: '(Halfway. I\'m basically a ninja. A very tall Nordic ninja.)' },
-  { trigger: 'near_goal', text: '(I can hear the chime! Don\'t mess it up now, Mikkel.)' },
-  { trigger: 'caught', text: '(Spotted. Again. Stefy would be laughing so hard right now.)' },
+  { trigger: 'start', text: '(Midnight garden. Don\'t get caught by foxes. Stefy would think this is hilarious.)' },
+  { trigger: 'first_seen', text: '(They freeze when they spot me. I freeze too. Less cute when I do it.)' },
+  { trigger: 'checkpoint1', text: '(Halfway. I\'m basically a ninja. Stefy would disagree. Loudly.)' },
+  { trigger: 'near_goal', text: '(Almost! I can hear the chime! Don\'t mess it up, Mikkel. For Stefy.)' },
+  { trigger: 'caught', text: '(Spotted. Again. Emma couldn\'t do this either though. Small comfort.)' },
 ];
 
 // ───── LEVEL 2 PLACEHOLDER (Lisbon Puzzle) ─────
@@ -123,14 +123,14 @@ export const LEVELS = [
     npcs: L1_NPCS,
     envInteractions: L1_ENV_INTERACTIONS,
     selfTalk: L1_SELF_TALK,
-    memoryItem: { id:'cherry_blossom', name:'Cherry Blossom', flavor:'The first one. She taught me constellations. I taught her... nothing useful, probably.' },
+    memoryItem: { id:'cherry_blossom', name:'Cherry Blossom', flavor:'The first one. She ordered me octopus. I survived. Barely.' },
     music: { tempo: 100, key: 'minor', mood: 'tense' },
     ambience: 'night_crickets',
     intro: [
-      { speaker: 'Mikkel', text: 'The garden looks the same. Still crawling with spirit foxes. Great.' },
-      { speaker: 'Mikkel', text: 'Last time I stole a flower from here. This time I need to remember why.' },
-      { speaker: 'Mikkel', text: 'The wind chime. I heard it and the whole memory came flooding back. Let\'s do that again.' },
-      { speaker: 'Mikkel', text: '(Sneak past the foxes. Stay out of their vision cones. Very Metal Gear.)' },
+      { speaker: 'Mikkel', text: 'The garden. Still full of spirit foxes. Stefy would love them. I\'m terrified of them.' },
+      { speaker: 'Mikkel', text: 'Last time I took a flower from here. This time I need a new one. For Stefy.' },
+      { speaker: 'Mikkel', text: 'The cherry blossom tree. When I found the flower last time, everything came back. Same tree. New flower.' },
+      { speaker: 'Mikkel', text: '(Sneak past the foxes. Stay out of their vision cones. Very Metal Gear. Stefy would judge me.)' },
     ],
   },
 ];
@@ -196,11 +196,11 @@ const L3_MEMORY_LINES = [
 const L3_NPCS = [
   { id: 'painter', col: 8, row: 8, sprite: 'gardener', dialog: [
     { speaker: 'Painter', text: 'You see the purple lights? Walk close and press Space.' },
-    { speaker: 'Painter', text: 'They come one at a time. Very dramatic. Very Provence.' },
+    { speaker: 'Painter', text: 'They come one at a time. Dramatic. But this is Provence. We do dramatic.' },
   ]},
   { id: 'cat', col: 32, row: 9, sprite: 'cat', dialog: [
-    { speaker: 'Provençal Cat', text: '*stretches luxuriously*' },
-    { speaker: 'Mikkel', text: '(She\'d name it "Monsieur Croissant." I\'d pretend that\'s not adorable.)' },
+    { speaker: 'Proven\u00e7al Cat', text: '*stretches luxuriously*' },
+    { speaker: 'Mikkel', text: '(I wonder what Stefy would name this one. Probably something Italian. In France. Classic Stefy.)' },
   ]},
   { id: 'baker', col: 8, row: 19, sprite: 'tanuki', dialog: [
     { speaker: 'Baker', text: 'Saw a glow near the bridge. Also want a croissant? No? Your loss.' },
@@ -211,22 +211,22 @@ const L3_NPCS = [
 ];
 
 const L3_ENV_INTERACTIONS = [
-  { col: 3, row: 1, id: 'lavender1', text: '(Lavender everywhere. She\'d already be planning what to cook with it. Overachiever.)' },
-  { col: 15, row: 9, id: 'wheat', text: '(Golden wheat. I took seventeen photos here last time. All of her. Very subtle, Mikkel.)' },
-  { col: 10, row: 22, id: 'stream', text: '(We skipped rocks here until mine hit a duck. She laughed until she couldn\'t breathe.)' },
-  { col: 25, row: 28, id: 'lavender_deep', text: '(The deep lavender is almost purple. I compared it to her eyes once. Out loud. Horrifying.)' },
-  { col: 32, row: 8, id: 'farmhouse', text: '(Stone farmhouse. She said she\'d cook in one someday. I volunteered to taste-test. Smooth.)' },
-  { col: 20, row: 15, id: 'beehive', text: '(A beehive. The honey here probably costs 40 euros. Worth it though.)' },
-  { col: 38, row: 20, id: 'old_well', text: '(Stone well with a purple ribbon. Someone\'s either romantic or lost their hair tie.)' },
-  { col: 5, row: 12, id: 'stone_wall', text: '(A low wall. Perfect sitting height. Not that I\'m imagining sitting here with anyone specific.)' },
-  { col: 28, row: 5, id: 'sundial', text: '(Sundial reads "time passes, love doesn\'t." The French really commit to the vibe.)' },
-  { col: 12, row: 28, id: 'bicycle', text: '(Rusted bicycle. Someone pedaled off into the sunset. Good for them.)' },
+  { col: 3, row: 1, id: 'lavender1', text: '(Lavender everywhere. I bet Stefy would already be planning a recipe. Something with honey.)' },
+  { col: 15, row: 9, id: 'wheat', text: '(Golden wheat. I took seventeen photos here last time. All of Stefy. Very subtle, Mikkel.)' },
+  { col: 10, row: 22, id: 'stream', text: '(We skipped rocks here. Mine hit a duck. Stefy almost died laughing. Emma would\'ve hit two ducks.)' },
+  { col: 25, row: 28, id: 'lavender_deep', text: '(This purple is almost the color of Stefy\'s... eyes? Scarf? I\'m spiraling.)' },
+  { col: 32, row: 8, id: 'farmhouse', text: '(Stone farmhouse. Does Stefy want a farmhouse someday? I\'d volunteer to taste-test everything.)' },
+  { col: 20, row: 15, id: 'beehive', text: '(Beehive. The honey here probably costs 40 euros. Would Stefy think it\'s worth it? Yes.)' },
+  { col: 38, row: 20, id: 'old_well', text: '(Stone well with a purple ribbon. Someone\'s romantic. Or lost a hair tie. Like Emma loses everything.)' },
+  { col: 5, row: 12, id: 'stone_wall', text: '(Low wall. Perfect sitting height. Not imagining sitting here with anyone specific...)' },
+  { col: 28, row: 5, id: 'sundial', text: '(Sundial: "time passes, love doesn\'t." The French commit. Stefy would approve.)' },
+  { col: 12, row: 28, id: 'bicycle', text: '(Rusted bicycle. Someone pedaled off into a sunset. I would too if Stefy was at the other end.)' },
 ];
 
 const L3_SELF_TALK = [
-  { trigger: 'first_found', text: '(Got one! The memory is... oh. Oh that\'s a good one.)' },
-  { trigger: 'halfway', text: '(Halfway. My face is doing something weird. Am I smiling? Stop it.)' },
-  { trigger: 'near_wisp', text: '(Another one close by. The lavender gets brighter near them.)' },
+  { trigger: 'first_found', text: '(Got one! The memory is... oh. Stefy. Of course it\'s about Stefy.)' },
+  { trigger: 'halfway', text: '(Halfway. My face is doing something weird. Am I smiling? Stefy can never know.)' },
+  { trigger: 'near_wisp', text: '(Another one close. The lavender gets brighter near them. Like Stefy\'s smile... shut up, brain.)' },
 ];
 
 export const LEVELS_L3 = {
@@ -240,14 +240,14 @@ export const LEVELS_L3 = {
   npcs: L3_NPCS,
   envInteractions: L3_ENV_INTERACTIONS,
   selfTalk: L3_SELF_TALK,
-  memoryItem: { id:'silver_lavender', name:'Silver Lavender', flavor:'She ran ahead. I chased. Neither of us was actually trying to win.' },
+  memoryItem: { id:'silver_lavender', name:'Silver Lavender', flavor:'She said "race me." I lost. She tripped. I caught her. Provence is flat.' },
   music: { tempo: 120, key: 'major', mood: 'warm_urgent' },
   ambience: 'cicadas',
   intro: [
-    { speaker: 'Mikkel', text: 'Provence. The lavender hits you like a wall. A nice wall. A purple wall.' },
-    { speaker: 'Mikkel', text: 'Wait... something\'s glowing in the field. Faint purple lights.' },
-    { speaker: 'Mikkel', text: 'Memory fragments. Of course they\'re scattered across a field. Dramatic as always.' },
-    { speaker: 'Mikkel', text: '(Walk close, press Space. Collect the glowing memories. Try not to be emotional about it.)' },
+    { speaker: 'Mikkel', text: 'Provence. Lavender hits you like a wall. Stefy would already be cooking with it.' },
+    { speaker: 'Mikkel', text: 'Something\'s glowing in the field. Faint purple lights. Memory fragments.' },
+    { speaker: 'Mikkel', text: 'Scattered across a field. Of course. Everything about Stefy is dramatic.' },
+    { speaker: 'Mikkel', text: '(Walk close, press Space. Collect the memories. Try not to think about Stefy the whole time. Fail.)' },
   ],
 };
 
@@ -298,36 +298,36 @@ const L2_CORRECT_PATH = (() => {
 const L2_NPCS = [
   { id: 'canal_keeper', col: 22, row: 6, sprite: 'gardener', dialog: [
     { speaker: 'Canal Keeper', text: 'Sluice gates control the flow. Space to toggle. Don\'t flood my garden.' },
-    { speaker: 'Canal Keeper', text: 'Close the wrong ones or the water just... goes everywhere. Like tourists.' },
+    { speaker: 'Canal Keeper', text: 'Close the wrong ones and water goes everywhere. Like Emma at a party.' },
   ]},
   { id: 'duck', col: 25, row: 2, sprite: 'cat', dialog: [
     { speaker: 'Duck', text: '*quack*' },
-    { speaker: 'Mikkel', text: '(She named the last one "Professor Quackington." In Italian. Even funnier.)' },
+    { speaker: 'Mikkel', text: '(Stefy named the last one "Professor Quackington." In Italian. I miss her.)' },
   ]},
   { id: 'mill_keeper', col: 11, row: 12, sprite: 'tanuki', dialog: [
     { speaker: 'Miller', text: 'Too many open gates means no pressure. Pick wisely, friend.' },
   ]},
   { id: 'cheese_man', col: 11, row: 20, sprite: 'merchant', dialog: [
     { speaker: 'Old Cheese Seller', text: 'You again! Still lost? Still happy about it?' },
-    { speaker: 'Mikkel', text: '(The cheese man! Still here. Still gives free Gouda. Legend.)' },
+    { speaker: 'Mikkel', text: '(The cheese man! Still here. Still free Gouda. Stefy would love this guy.)' },
   ]},
 ];
 const L2_ENV = [
-  { col:6,row:2,id:'tulips',text:'(Tulips. She took a hundred photos. I was in zero of them. Rude.)' },
-  { col:11,row:13,id:'windmill',text:'(Windmill\'s stuck. Same energy as me trying to text her back casually.)' },
-  { col:24,row:1,id:'reservoir',text:'(Full reservoir. Just needs the right path. Very metaphorical. Shut up, brain.)' },
-  { col:34,row:26,id:'garden',text:'(Dry tulip garden. The golden one is in there somewhere.)' },
-  { col:7,row:7,id:'house1',text:'(Canal house with a lean. She said they lean to greet you. I think it\'s just sinking.)' },
-  { col:16,row:7,id:'house2',text:'(Curtains wide open. Dutch people have no secrets. I respect it.)' },
-  { col:40,row:4,id:'boat',text:'(Empty canal boat. Could nap here. Tempting. No. Flowers first.)' },
-  { col:30,row:14,id:'bridge',text:'(Brick bridge. Took a selfie here last time. Deleted it. Took another one.)' },
-  { col:20,row:22,id:'dike',text:'(A dike. The Dutch have been solving water puzzles for centuries. I have five minutes.)' },
+  { col:6,row:2,id:'tulips',text:'(Tulips. Stefy took a hundred photos last time. I was in zero. Rude.)' },
+  { col:11,row:13,id:'windmill',text:'(Windmill\'s stuck. Same energy as me trying to text Stefy back casually.)' },
+  { col:24,row:1,id:'reservoir',text:'(Full reservoir. Just needs the right path. Like me and Stefy... shut up, brain.)' },
+  { col:34,row:26,id:'garden',text:'(Dry tulip garden. The golden one is in there. Stefy is counting on me.)' },
+  { col:7,row:7,id:'house1',text:'(Canal house with a lean. Stefy said they lean to greet you. I think it\'s just sinking.)' },
+  { col:16,row:7,id:'house2',text:'(Curtains wide open. Dutch people have no secrets. Unlike me. About Stefy. Moving on.)' },
+  { col:40,row:4,id:'boat',text:'(Empty canal boat. Would Stefy want to ride one? I bet she\'d steer. Badly.)' },
+  { col:30,row:14,id:'bridge',text:'(Brick bridge. Took a selfie here last time. With Stefy. Deleted it. Took another.)' },
+  { col:20,row:22,id:'dike',text:'(A dike. The Dutch solved water puzzles for centuries. I have five minutes and Stefy on my mind.)' },
 ];
 const L2_SELF_TALK = [
-  { trigger:'start',text:'(Netherlands. Flat as a pancake. Pretty as a postcard. The tulip garden is bone dry though.)' },
-  { trigger:'first_gate',text:'(Sluice gate! Space to toggle. Now I\'m a water engineer. My CV is wild.)' },
-  { trigger:'leak',text:'(Water\'s splitting. Neither side gets enough. Close something, Mikkel.)' },
-  { trigger:'progress',text:'(Flowing further! I\'m basically Dutch now. Someone get me clogs.)' },
+  { trigger:'start',text:'(Netherlands. Flat as a pancake. The tulip garden is dry. Stefy trusts me with this. Terrifying.)' },
+  { trigger:'first_gate',text:'(Sluice gate! Space to toggle. I\'m a water engineer now. Stefy would be impressed. Maybe.)' },
+  { trigger:'leak',text:'(Water\'s splitting. Neither side gets enough. Close something, Mikkel. Stefy is depending on you.)' },
+  { trigger:'progress',text:'(Flowing further! I\'m basically Dutch now. Stefy would laugh at that. Emma would not get it.)' },
 ];
 
 export const LEVELS_L2 = {
@@ -335,13 +335,13 @@ export const LEVELS_L2 = {
   map: L2_MAP, start: L2_START, goal: L2_GOAL,
   gates: L2_GATES, correctPath: L2_CORRECT_PATH,
   npcs: L2_NPCS, envInteractions: L2_ENV, selfTalk: L2_SELF_TALK,
-  memoryItem: { id:'golden_tulip', name:'Golden Tulip', flavor:'We got lost. Found a cheese man. Got unsolicited life advice. Perfect day.' },
+  memoryItem: { id:'golden_tulip', name:'Golden Tulip', flavor:'Tandem bike. She steered us into a tulip field. Technically illegal. Technically perfect.' },
   music: { tempo:90, key:'major', mood:'gentle' }, ambience: 'morning_birds',
   intro: [
-    { speaker:'Mikkel', text:'The Dutch countryside. Canals, flat everything, unreasonably good cheese.' },
-    { speaker:'Mikkel', text:'We got lost here once. Followed the water until we found trouble. Good trouble.' },
-    { speaker:'Mikkel', text:'The tulip garden is dry. Sluice gates are jammed. Time to play plumber.' },
-    { speaker:'Mikkel', text:'(Find the gates, toggle with Space. Route water to the garden. Don\'t overthink it.)' },
+    { speaker:'Mikkel', text:'The Dutch countryside. Canals, flat everything. Stefy and I got lost here once.' },
+    { speaker:'Mikkel', text:'Followed the water until we found trouble. Good trouble. Stefy\'s kind of trouble.' },
+    { speaker:'Mikkel', text:'The tulip garden is dry. Sluice gates are jammed. Time to be useful for once.' },
+    { speaker:'Mikkel', text:'(Find the gates, toggle with Space. Route water to the garden. Do it for Stefy.)' },
   ],
 };
 
@@ -384,45 +384,45 @@ const L4_START = { col: 3, row: 3 };
 const L4_GOAL = { col: 42, row: 27 };
 
 const L4_LANDMARKS = [
-  { id: 'waterfall', col: 24, row: 5, text: '(Hidden waterfall! She\'d Shazam it. "What song is this waterfall?" That\'s not how it works, Stefy.)' },
-  { id: 'ancient_tree', col: 14, row: 12, text: '(Thousand-year-old tree. Survived everything. I can barely survive a group chat.)' },
-  { id: 'bird_nest', col: 33, row: 20, text: '(Blue eggs in a nest. Protected, high up, unbothered. Living the dream.)' },
-  { id: 'cave_mouth', col: 8, row: 22, text: '(Dark cave. Nope. Not going in. I\'ve seen movies.)' },
+  { id: 'waterfall', col: 24, row: 5, text: '(Hidden waterfall! Would Stefy Shazam it? "What song is this waterfall?" That\'s not how Shazam works, Stefy.)' },
+  { id: 'ancient_tree', col: 14, row: 12, text: '(Thousand-year-old tree. Survived everything. I can barely survive Emma\'s group chat.)' },
+  { id: 'bird_nest', col: 33, row: 20, text: '(Blue eggs in a nest. Protected, high up, unbothered. Like Stefy when she\'s cooking.)' },
+  { id: 'cave_mouth', col: 8, row: 22, text: '(Dark cave. Nope. Not going in. Stefy would though. She\'s braver than me.)' },
 ];
 
 const L4_NPCS = [
   { id: 'parrot', col: 5, row: 4, sprite: 'firefly', dialog: [
     { speaker: 'Scarlet Macaw', text: '*mimics* "KEEP GOING! KEEP GOING!"' },
-    { speaker: 'Mikkel', text: '(Thanks. Very encouraging. Wrong language but I appreciate the energy.)' },
+    { speaker: 'Mikkel', text: '(Thanks. Wrong language but I appreciate the energy. Like Emma at karaoke.)' },
   ]},
   { id: 'river_guide', col: 24, row: 14, sprite: 'gardener', dialog: [
     { speaker: 'River Guide', text: 'Can\'t see the path? Walk it anyway. The jungle shows the way to those who move.' },
   ]},
   { id: 'monkey', col: 30, row: 10, sprite: 'cat', dialog: [
     { speaker: 'Capuchin', text: '*chitters and points southeast*' },
-    { speaker: 'Mikkel', text: '(The monkey has better navigation than me. Story of my life.)' },
+    { speaker: 'Mikkel', text: '(This monkey navigates better than me. Stefy would not be surprised.)' },
   ]},
   { id: 'frog', col: 18, row: 20, sprite: 'firefly', dialog: [
     { speaker: 'Tree Frog', text: '*ribbit*' },
-    { speaker: 'Mikkel', text: '(Just keep walking. Fog clears where you go. Don\'t overthink it.)' },
+    { speaker: 'Mikkel', text: '(Keep walking. Fog clears where I go. Like when Stefy enters a room... poetic, Mikkel.)' },
   ]},
 ];
 
 const L4_ENV = [
-  { col:12,row:5,id:'vines',text:'(Vines thick as my arm. She\'d try to swing on one. I\'d have to catch her. Again.)' },
-  { col:20,row:18,id:'river_bank',text:'(Muddy river bank. My shoes are destroyed. She\'d say "they have character now.")' },
-  { col:35,row:25,id:'orchid_trail',text:'(Petals on the ground. Getting warmer. Like a very wet treasure hunt.)' },
-  { col:6,row:15,id:'fallen_log',text:'(Massive fallen log. Good bench. My fitbit thinks I\'m dead.)' },
-  { col:15,row:22,id:'waterfall',text:'(Small waterfall. She\'d stick her hand in and shriek. I\'d laugh. She\'d splash me.)' },
-  { col:28,row:8,id:'mushroom_ring',text:'(Glowing mushrooms in a circle. Either magical or toxic. Both, probably.)' },
-  { col:40,row:20,id:'broken_bridge',text:'(Rope bridge, half rotten. The footprints only go forward. That\'s a sign.)' },
-  { col:18,row:28,id:'carved_tree',text:'(Initials carved in a trunk. Not ours. But... noted. For later. Maybe.)' },
+  { col:12,row:5,id:'vines',text:'(Vines thick as my arm. Would Stefy try to swing on one? Yes. Would I catch her? I\'d try.)' },
+  { col:20,row:18,id:'river_bank',text:'(Muddy river bank. My shoes are ruined. Stefy would say they have "character" now.)' },
+  { col:35,row:25,id:'orchid_trail',text:'(Petals on the ground. Getting warmer. Stefy is worth every wet step.)' },
+  { col:6,row:15,id:'fallen_log',text:'(Massive fallen log. Good bench. My fitbit thinks I\'m dead. Emma would agree.)' },
+  { col:15,row:22,id:'waterfall',text:'(Small waterfall. I bet Stefy would stick her hand in and shriek. I\'d laugh. She\'d splash me.)' },
+  { col:28,row:8,id:'mushroom_ring',text:'(Glowing mushrooms in a circle. Magical or toxic. Both, probably. Like Emma\'s cooking.)' },
+  { col:40,row:20,id:'broken_bridge',text:'(Rope bridge, half rotten. Footprints only go forward. For Stefy, I go forward.)' },
+  { col:18,row:28,id:'carved_tree',text:'(Initials carved in a trunk. Not ours. But... would Stefy want that? Noted. For later.)' },
 ];
 
 const L4_SELF_TALK = [
-  { trigger:'start',text:'(Dense jungle. Can\'t see two meters ahead. The orchid better be worth it.)' },
-  { trigger:'river',text:'(River. No swimming. My coordination is bad enough on land.)' },
-  { trigger:'deep',text:'(Getting deep now. Following the sound of water. Or is that my heartbeat?)' },
+  { trigger:'start',text:'(Dense jungle. Can\'t see two meters ahead. The orchid better be worth it. For Stefy, it is.)' },
+  { trigger:'river',text:'(River. No swimming. My coordination is bad enough on land. Stefy knows this.)' },
+  { trigger:'deep',text:'(Getting deep now. Following the sound of water. Or is that my heartbeat thinking about Stefy?)' },
 ];
 
 export const LEVELS_L4 = {
@@ -430,12 +430,12 @@ export const LEVELS_L4 = {
   map: L4_MAP, start: L4_START, goal: L4_GOAL,
   landmarks: L4_LANDMARKS,
   npcs: L4_NPCS, envInteractions: L4_ENV, selfTalk: L4_SELF_TALK,
-  memoryItem: { id:'rainbow_orchid', name:'Rainbow Orchid', flavor:'Thunderstorm. Shared an awning. Both scared. Both pretending not to be. Very cool of us.' },
+  memoryItem: { id:'rainbow_orchid', name:'Rainbow Orchid', flavor:'Gate said Privado. Stefy walked in. I followed. What else was I going to do.' },
   music: { tempo:80, key:'minor', mood:'mysterious' }, ambience: 'jungle_rain',
   intro: [
-    { speaker:'Mikkel', text:'The Amazon. Air thick as soup. Humidity at 300%. My hair is already ruined.' },
-    { speaker:'Mikkel', text:'The orchid is deep in there. Can\'t see the path. Obviously.' },
-    { speaker:'Mikkel', text:'Just walk. The fog lifts wherever I go. Like a very sweaty adventure game.' },
+    { speaker:'Mikkel', text:'The Amazon. Humidity at 300%. My hair is ruined. Stefy would laugh.' },
+    { speaker:'Mikkel', text:'The orchid is deep in there. Can\'t see the path. Stefy would just walk in. So I will too.' },
+    { speaker:'Mikkel', text:'The fog lifts wherever I go. Like a very sweaty adventure game. For Stefy.' },
   ],
 };
 
@@ -478,22 +478,22 @@ const L5_TRADERS = [
     wants: null, gives:'Saffron',
     giveDialog:[{speaker:'Spice Seller',text:'Welcome! Here, take this saffron. Free! First one is always free.'},{speaker:'Spice Seller',text:'The carpet weaver next street over? Obsessed with saffron tea. Maybe she can help you.'}],
     needDialog:[{speaker:'Spice Seller',text:'I have plenty! Take, take.'}],
-    doneText:'Go! Be fragrant!' },
+    doneText:'Go! Be fragrant! Your girl will love it!' },
   { id:'carpet_weaver', name:'Carpet Weaver', col:19, row:12, sprite:'tanuki',
     wants:'Saffron', gives:'Silk Thread',
-    giveDialog:[{speaker:'Carpet Weaver',text:'Saffron! You angel. Here, silk thread. Fair trade.'},{speaker:'Carpet Weaver',text:'The lantern maker south of here needs thread for his frames. Tell him I said hi.'}],
+    giveDialog:[{speaker:'Carpet Weaver',text:'Saffron! You angel. Here, silk thread. Fair trade.'},{speaker:'Carpet Weaver',text:'The lantern maker south of here needs thread for his frames. Tell him I sent you.'}],
     needDialog:[{speaker:'Carpet Weaver',text:'I\'d kill for some saffron tea... the spice seller up north has some.'}],
-    doneText:'Beautiful. Come back and I\'ll make you a rug.' },
+    doneText:'Beautiful. Come back and I\'ll make you a rug. Bring the girl.' },
   { id:'lantern_maker', name:'Lantern Maker', col:29, row:18, sprite:'merchant',
     wants:'Silk Thread', gives:'Bronze Key',
-    giveDialog:[{speaker:'Lantern Maker',text:'Perfect thread! Tonight\'s lanterns will be magnificent.'},{speaker:'Lantern Maker',text:'Here, a bronze key. The garden keeper dropped it last week. He\'s been sulking.'}],
+    giveDialog:[{speaker:'Lantern Maker',text:'Perfect thread! Tonight\'s lanterns will be magnificent.'},{speaker:'Lantern Maker',text:'Here, a bronze key. The garden keeper dropped it last week. He\'s been insufferable.'}],
     needDialog:[{speaker:'Lantern Maker',text:'I need silk thread for my frames. The carpet weaver has some. I think.'}],
-    doneText:'May my lanterns light your questionable life choices.' },
+    doneText:'May my lanterns light your questionable life choices. And hers.' },
   { id:'riad_keeper', name:'Garden Keeper', col:39, row:24, sprite:'cat',
     wants:'Bronze Key', gives: null,
-    giveDialog:[{speaker:'Garden Keeper',text:'MY KEY! Where did you... never mind! Go in! The garden is yours tonight.'},{speaker:'Garden Keeper',text:'The roses at sunset change people. Or so they tell me. I\'m already changed.'}],
+    giveDialog:[{speaker:'Garden Keeper',text:'MY KEY! Where did you... never mind! Go in! The garden is yours tonight.'},{speaker:'Garden Keeper',text:'The roses at sunset change people. Bring her next time.'}],
     needDialog:[{speaker:'Garden Keeper',text:'Lost my key somewhere in the market. Again. I\'m a disaster.'}],
-    doneText:'Still in there? Take your time. The flowers don\'t mind.' },
+    doneText:'Still in there? Take your time. The flowers don\'t mind. Neither does she, probably.' },
 ];
 
 const L5_NPCS = [
@@ -507,25 +507,25 @@ const L5_NPCS = [
   ]},
   { id:'medina_cat', col:35, row:6, sprite:'cat', dialog:[
     { speaker: 'Medina Cat', text: '*headbutts your ankle*' },
-    { speaker: 'Mikkel', text: '(She\'d adopt you immediately. "Signor Cannoli, you come home with mama.")' },
+    { speaker: 'Mikkel', text: '(Stefy would adopt you immediately. "Signor Cannoli, you come home with mama." I\'d carry the cat.)' },
   ]},
 ];
 
 const L5_ENV = [
-  { col:15,row:6,id:'market_stall',text:'(Dried fruit and spices. She\'d buy everything. "It\'s for cooking, Mikkel!" Sure it is.)' },
-  { col:25,row:18,id:'fountain',text:'(A tiled fountain. She\'d make a wish. I\'d pretend not to make one too.)' },
-  { col:35,row:12,id:'cats',text:'(Cats everywhere. They own this city and they know it.)' },
-  { col:42,row:28,id:'sunset_wall',text:'(Warm wall. I\'m leaning on history. Very dramatic of me.)' },
-  { col:5,row:12,id:'door_carved',text:'(Carved door. Every one is different. She\'d photograph all of them.)' },
-  { col:20,row:6,id:'spice_pile',text:'(Saffron, cumin, paprika. My nose is having the time of its life.)' },
-  { col:30,row:24,id:'mosaic',text:'(Floor mosaic in blue and gold. I\'d trip on it. She\'d frame it.)' },
-  { col:45,row:12,id:'rooftop_view',text:'(Rooftop view of the whole medina. Worth the climb. My legs disagree.)' },
+  { col:15,row:6,id:'market_stall',text:'(Dried fruit and spices. Stefy would buy everything. "It\'s for cooking, Mikkel!" Sure it is, Stefy.)' },
+  { col:25,row:18,id:'fountain',text:'(A tiled fountain. Would Stefy make a wish? Yes. Would I pretend not to? Also yes.)' },
+  { col:35,row:12,id:'cats',text:'(Cats everywhere. They own this city. Emma would be allergic. Serves her right.)' },
+  { col:42,row:28,id:'sunset_wall',text:'(Warm wall. I\'m leaning on history. Stefy would appreciate this. I appreciate Stefy.)' },
+  { col:5,row:12,id:'door_carved',text:'(Carved door. Every one is different. Stefy would photograph all of them. I\'d photograph Stefy.)' },
+  { col:20,row:6,id:'spice_pile',text:'(Saffron, cumin, paprika. Stefy\'s kitchen in physical form.)' },
+  { col:30,row:24,id:'mosaic',text:'(Floor mosaic in blue and gold. I\'d trip on it. Stefy would frame it. We complement each other.)' },
+  { col:45,row:12,id:'rooftop_view',text:'(Rooftop view of the whole medina. I wish Stefy could see this. I wish Stefy was here.)' },
 ];
 
 const L5_SELF_TALK = [
-  { trigger:'start',text:'(Morocco. Noise, color, cats. Someone here has what I need. Probably.)' },
-  { trigger:'first_trade',text:'(Trading! Give a thing, get a thing. I\'m basically a merchant now. Where\'s my turban?)' },
-  { trigger:'key_obtained',text:'(A key! The garden keeper lost his. Time to be a hero. A very sweaty hero.)' },
+  { trigger:'start',text:'(Morocco. Noise, color, cats. Stefy would thrive here. I\'m overwhelmed but that\'s fine.)' },
+  { trigger:'first_trade',text:'(Trading! Give a thing, get a thing. Stefy would be better at this. She charms everyone.)' },
+  { trigger:'key_obtained',text:'(A key! The garden keeper lost his. Time to be a hero. For Stefy. A very sweaty hero.)' },
 ];
 
 export const LEVELS_L5 = {
@@ -533,13 +533,13 @@ export const LEVELS_L5 = {
   map: L5_MAP, start: L5_START, goal: L5_GOAL,
   traders: L5_TRADERS,
   npcs: L5_NPCS, envInteractions: L5_ENV, selfTalk: L5_SELF_TALK,
-  memoryItem: { id:'desert_rose', name:'Desert Rose', flavor:'Sat in a garden saying nothing for an hour. Best conversation we ever had.' },
+  memoryItem: { id:'desert_rose', name:'Desert Rose', flavor:'Riad garden. Italian recipes. I moved closer "for the stars." The stars were behind us.' },
   music: { tempo:95, key:'minor', mood:'warm' }, ambience: 'market_chatter',
   intro: [
-    { speaker:'Mikkel', text:'Morocco. The medina is a maze. A loud, colorful, confusing maze.' },
-    { speaker:'Mikkel', text:'There\'s a flower garden behind a locked gate. Because of course there is.' },
-    { speaker:'Mikkel', text:'The locals trade favors. If I\'m helpful enough, maybe someone has a key.' },
-    { speaker:'Mikkel', text:'(Talk to people with Space. Trade your way to the garden. Charm offensive.)' },
+    { speaker:'Mikkel', text:'Morocco. The medina is a maze. Stefy would navigate this perfectly. I\'m already lost.' },
+    { speaker:'Mikkel', text:'There\'s a flower garden behind a locked gate. For Stefy, I\'ll find that key.' },
+    { speaker:'Mikkel', text:'The locals trade favors. If I\'m helpful enough, maybe someone has a key. Charm offensive.' },
+    { speaker:'Mikkel', text:'(Talk to people with Space. Trade your way to the garden. Think of Stefy. Focus.)' },
   ],
 };
 
@@ -590,12 +590,12 @@ const L6_CHECKPOINTS = [
 const L6_NPCS = [
   { id:'seabird', col:3, row:13, sprite:'firefly', dialog:[
     { speaker:'Seabird', text:'*screams into the void*' },
-    { speaker:'Mikkel', text:'(Same, bird. Same.)' },
+    { speaker:'Mikkel', text:'(Same, bird. Same. Stefy would say I\'m being dramatic. She\'d be right.)' },
   ]},
   { id:'lighthouse_keeper', col:12, row:11, sprite:'gardener', dialog:[
     { speaker:'Cliff Walker', text:'One step at a time. Sand tiles crumble behind you. No going back.' },
     { speaker:'Cliff Walker', text:'Fall? You restart from the last wide platform.' },
-    { speaker:'Mikkel', text:'(One step at a time. I\'m Danish. We literally invented hygge. I can be patient.)' },
+    { speaker:'Mikkel', text:'(One step at a time. For Stefy. I\'m Danish. We literally invented hygge. I can be patient.)' },
   ]},
   { id:'climber', col:22, row:9, sprite:'merchant', dialog:[
     { speaker:'Climber', text:'Still alive? Checkpoints are on the wide bits. Step on one and you\'re safe.' },
@@ -603,19 +603,19 @@ const L6_NPCS = [
 ];
 
 const L6_ENV = [
-  { col:16,row:6,id:'cliff_edge',text:'(Don\'t look down. I looked down. Mistake.)' },
-  { col:32,row:11,id:'wind',text:'(The wind is trying to kill me personally. Very Danish.)' },
-  { col:44,row:18,id:'near_goal',text:'(Almost there. Don\'t celebrate early, Mikkel. Famous last words.)' },
-  { col:8,row:14,id:'fossils',text:'(Fossils in the chalk. Millions of years old. Puts my problems in perspective.)' },
-  { col:22,row:5,id:'nest',text:'(Bird\'s nest on the cliff face. Brave. Stupid. Brave.)' },
-  { col:36,row:8,id:'view',text:'(Can see Sweden from here. Or maybe that\'s just fog. 50/50.)' },
-  { col:42,row:14,id:'wildflowers',text:'(Wildflowers growing from chalk. Stubborn little things. I respect that.)' },
+  { col:16,row:6,id:'cliff_edge',text:'(Don\'t look down. I looked down. Stefy would push me off the edge. Lovingly.)' },
+  { col:32,row:11,id:'wind',text:'(The wind is trying to kill me personally. Very Danish. Stefy would survive this. She\'s tougher.)' },
+  { col:44,row:18,id:'near_goal',text:'(Almost there. Don\'t celebrate early, Mikkel. Do it for Stefy. She\'s waiting.)' },
+  { col:8,row:14,id:'fossils',text:'(Fossils in the chalk. Millions of years old. Still younger than Emma\'s jokes.)' },
+  { col:22,row:5,id:'nest',text:'(Bird\'s nest on the cliff face. Brave. Like Stefy trying to cook Danish food. Brave and wrong.)' },
+  { col:36,row:8,id:'view',text:'(Can see Sweden from here. Stefy once asked if I could see Italy from Denmark. I loved that.)' },
+  { col:42,row:14,id:'wildflowers',text:'(Wildflowers growing from chalk. Stubborn little things. Like Stefy in a kitchen.)' },
 ];
 
 const L6_SELF_TALK = [
-  { trigger:'start',text:'(White Cliffs. Home turf. One wrong step and I\'m swimming. Tap carefully.)' },
-  { trigger:'fall',text:'(Aaaand I fell. Of course. Try again, idiot.)' },
-  { trigger:'midpoint',text:'(Halfway! The view is insane. She\'d say "bellissimo" about fourteen times.)' },
+  { trigger:'start',text:'(White Cliffs. Home turf. One wrong step and I\'m swimming. Stefy said she\'d visit. For this.)' },
+  { trigger:'fall',text:'(Aaaand I fell. Of course. Stefy must never know about this. Or Emma. Especially Emma.)' },
+  { trigger:'midpoint',text:'(Halfway! The view is insane. Stefy would say "bellissimo" about fourteen times. I miss it.)' },
 ];
 
 export const LEVELS_L6 = {
@@ -623,13 +623,13 @@ export const LEVELS_L6 = {
   map: L6_MAP, start: L6_START, goal: L6_GOAL,
   checkpoints: L6_CHECKPOINTS,
   npcs: L6_NPCS, envInteractions: L6_ENV, selfTalk: L6_SELF_TALK,
-  memoryItem: { id:'danish_bluebell', name:'Danish Bluebell', flavor:'Walked her home. Rehearsed one sentence the whole way. Said "goodnight" instead. Smooth.' },
+  memoryItem: { id:'danish_bluebell', name:'Danish Bluebell', flavor:'Made risotto. She reached past me for parmesan. Hair on my neck. I burned the risotto.' },
   music: { tempo:70, key:'major', mood:'contemplative' }, ambience: 'wind_sea',
   intro: [
-    { speaker:'Mikkel', text:'Denmark. Home! The White Cliffs of M\u00f8n. Wind, chalk, and the sea trying to eat everything.' },
-    { speaker:'Mikkel', text:'The path is narrow. One wrong step and I\'m falling. Into the sea. Very dramatic.' },
-    { speaker:'Mikkel', text:'The bluebell is at the end. Some things are worth not dying for. Wait. Worth. Ugh.' },
-    { speaker:'Mikkel', text:'(Each key press = one step. Tap, don\'t hold. Avoid sand and water. Don\'t panic.)' },
+    { speaker:'Mikkel', text:'Denmark. Home! The White Cliffs of M\u00f8n. Where Stefy once tried to pronounce M\u00f8n. Couldn\'t.' },
+    { speaker:'Mikkel', text:'The path is narrow. One wrong step and I\'m falling. Stefy would film it.' },
+    { speaker:'Mikkel', text:'The bluebell is at the end. For Stefy, it\'s worth not dying. Probably.' },
+    { speaker:'Mikkel', text:'(Each key press = one step. Tap, don\'t hold. Avoid sand and water. Think of Stefy.)' },
   ],
 };
 
@@ -767,39 +767,39 @@ export const LEVELS_L7 = {
   npcs: [
     { id:'old_woman', col:5, row:5, sprite:'gardener', dialog:[
       { speaker:'Nonna', text:'The sunflower field is far below. You\'ll need everything you\'ve learned.' },
-      { speaker:'Nonna', text:'Foxes, water, memories, trading, cliffs. All of it. Coraggio, ragazzo.' },
+      { speaker:'Nonna', text:'Foxes, water, memories, trading, cliffs. All of it. Coraggio, ragazzo. Do it for her.' },
     ]},
     { id:'stray_cat', col:40, row:8, sprite:'cat', dialog:[
       { speaker:'Cat', text:'*stares with terrifying wisdom*' },
-      { speaker:'Mikkel', text:'(This cat has seen things. Probably judges everyone who comes through.)' },
+      { speaker:'Mikkel', text:'(This cat knows about Stefy. I can tell. It judges me. Fair.)' },
     ]},
     { id:'bird', col:25, row:22, sprite:'firefly', dialog:[
       { speaker:'Songbird', text:'*unnecessarily beautiful melody*' },
-      { speaker:'Mikkel', text:'(Even the birds here are dramatic. It\'s Italy, I guess.)' },
+      { speaker:'Mikkel', text:'(Even the birds here are dramatic. It\'s Stefy\'s Italy. Of course they are.)' },
     ]},
     { id:'farmer', col:10, row:42, sprite:'merchant', dialog:[
       { speaker:'Farmer', text:'The florist wants bread. The baker has too much. You see where this is going.' },
     ]},
   ],
   envInteractions: [
-    { col:15,row:3,id:'olive_tree',text:'(Olive tree older than my entire country. Respect.)' },
-    { col:35,row:5,id:'bell_tower',text:'(Bell tower. She\'d count the chimes. I\'d count her freckles. Wait, what?)' },
-    { col:8,row:12,id:'canal_wall',text:'(Water blocks the path. There\'s always a switch. There\'s always a switch.)' },
-    { col:40,row:15,id:'lever_hint',text:'(A mechanism! Pull it? Push it? I love puzzles. (I hate puzzles.))' },
-    { col:15,row:23,id:'orb_glow',text:'(Purple glow between the trees. Memory fragments. Drama queen memories.)' },
-    { col:35,row:28,id:'stone_arch',text:'(Stone arch. Gate sealed. Three orbs should do it. Probably.)' },
-    { col:5,row:35,id:'fog_edge',text:'(Thick fog. Clears when I walk. Very cinematic. Very humid.)' },
-    { col:38,row:38,id:'mosaic_floor',text:'(Sunflower mosaic on the floor. I\'m going the right way! For once!)' },
-    { col:25,row:45,id:'market_smell',text:'(Bread and basil. My stomach just filed a formal complaint.)' },
-    { col:44,row:52,id:'cliff_path',text:'(Narrow path. Again with the cliffs. Denmark 2: Italian Edition.)' },
-    { col:25,row:55,id:'almost',text:'(There it is. The sunflower. Don\'t trip. DON\'T trip, Mikkel.)' },
+    { col:15,row:3,id:'olive_tree',text:'(Olive tree older than my entire country. Stefy\'s grandma probably knows it personally.)' },
+    { col:35,row:5,id:'bell_tower',text:'(Bell tower. Stefy would count the chimes. I\'d count her freckles. Wait, what? Focus, Mikkel.)' },
+    { col:8,row:12,id:'canal_wall',text:'(Water blocks the path. There\'s always a switch. Like there\'s always an excuse to text Stefy.)' },
+    { col:40,row:15,id:'lever_hint',text:'(A mechanism! Pull it? Push it? Stefy would just pull it. No hesitation. I hesitate.)' },
+    { col:15,row:23,id:'orb_glow',text:'(Purple glow between the trees. Memory fragments. All of them about Stefy. Shocking.)' },
+    { col:35,row:28,id:'stone_arch',text:'(Stone arch. Gate sealed. Three orbs should do it. For Stefy. Everything is for Stefy.)' },
+    { col:5,row:35,id:'fog_edge',text:'(Thick fog. Clears when I walk. Like my brain around Stefy... wait, opposite actually.)' },
+    { col:38,row:38,id:'mosaic_floor',text:'(Sunflower mosaic on the floor. Her flower. Her country. I\'m in the right place.)' },
+    { col:25,row:45,id:'market_smell',text:'(Bread and basil. Stefy\'s kitchen. My stomach and my heart both hurt. Emma would mock me.)' },
+    { col:44,row:52,id:'cliff_path',text:'(Narrow path. Again with the cliffs. But this time it\'s Italy. Stefy\'s Italy.)' },
+    { col:25,row:55,id:'almost',text:'(There it is. The sunflower. The last one. For Stefy. DON\'T trip, Mikkel.)' },
   ],
-  memoryItem: { id:'italian_sunflower', name:'Italian Sunflower', flavor:'Seven flowers. Seven cities. Seven times I proved I\'d do something ridiculous for her.' },
+  memoryItem: { id:'italian_sunflower', name:'Italian Sunflower', flavor:'Seven flowers. Seven cities. Credit card statement was criminal. She stopped talking. Worth it.' },
   music: { tempo:110, key:'major', mood:'triumphant' }, ambience: 'evening_bells',
   intro: [
-    { speaker:'Mikkel', text:'Italy. Her Italy. Piedmont hills at golden hour. Offensively pretty.' },
-    { speaker:'Mikkel', text:'Everything I\'ve done so far... sneaking, swimming, trading... it all ends here.' },
+    { speaker:'Mikkel', text:'Italy. Stefy\'s Italy. Piedmont hills at golden hour. Offensively pretty. Like Stefy.' },
+    { speaker:'Mikkel', text:'Everything I\'ve done so far... sneaking, swimming, trading... all of it was for Stefy.' },
     { speaker:'Mikkel', text:'The sunflower is at the bottom. Then the bouquet is complete. Then I have to talk to her. Oh no.' },
-    { speaker:'Mikkel', text:'(This level has everything. Stealth, puzzles, orbs, fog, trading, cliffs. The full Mikkel Experience.)' },
+    { speaker:'Mikkel', text:'(This level has everything. Stealth, puzzles, orbs, fog, trading, cliffs. The full Mikkel-for-Stefy Experience.)' },
   ],
 };
