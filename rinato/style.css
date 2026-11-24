@@ -1,0 +1,77 @@
+html {
+    background-color: rgb(212,246,245);
+}
+
+.icn {
+    position: absolute;
+    width: 200px;
+    max-width: 60%;
+    height: auto;
+    z-index: -1;
+}
+
+.icn0 {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    translate: -50%;
+}
+
+.icn1 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.icn2 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.icn3 {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    translate: -50%;
+}
+
+.icn4 {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.icn5 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#heart {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    translate: -50%;
+}
+
+.framed-envelope {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+
+.matrix {
+    height: 500px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.title {
+    text-align: center;
+    background-color: rgba(212, 246, 245, 0);
+    border-radius: 5px;
+    font-family: 'Lucida Handwriting';
+}
