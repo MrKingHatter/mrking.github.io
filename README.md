@@ -11,6 +11,7 @@ A lightweight static site used as a web development playground — experimenting
 ```
 index.html   – Landing page
 about.html   – About / site details
+rinato/      – Emmarinato birthday card page
 styles.css   – Shared stylesheet
 images/      – Image assets
 CNAME        – Custom domain configuration (mrking.dk)
